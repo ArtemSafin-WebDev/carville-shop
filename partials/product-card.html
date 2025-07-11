@@ -1,0 +1,119 @@
+<div class="product-card">
+    <a href="#" class="product-card__link-wrapper"></a>
+    <div class="product-card__image-container">
+        <div class="product-card__image-container-inner">
+            <picture>
+                <source media="(max-width: 576px)" srcset="/images/products/1-mobile.webp">
+                <img src="/images/products/1.webp" alt="" class="product-card__image">
+            </picture>
+        </div>
+        <div class="product-card__btns">
+            <div class="product-card__discount">
+                <svg width="14" height="14" aria-hidden="true">
+                    <use xlink:href="#discount"></use>
+                </svg>
+            </div>
+            <div class="product-card__add-to-favorite">
+                <button class="product-card__add-to-favorite-btn">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#heart"></use>
+                    </svg>
+                </button>
+                <div class="product-card__popover product-card__popover--add">
+                    <div class="product-card__popover-inner">
+                        Добавить в избранное
+                    </div>
+                </div>
+                <div class="product-card__popover product-card__popover--added">
+                    <div class="product-card__popover-inner">
+                        В избранном
+                    </div>
+                </div>
+            </div>
+            <div class="product-card__add-to-comparison">
+                <button class="product-card__add-to-comparison-btn">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#compare"></use>
+                    </svg>
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#compare-filled"></use>
+                    </svg>
+                </button>
+                <div class="product-card__popover product-card__popover--add">
+                    <div class="product-card__popover-inner">
+                        Добавить к сравнению
+                    </div>
+                </div>
+                <div class="product-card__popover product-card__popover--added">
+                    <div class="product-card__popover-inner">
+                        В сравнении
+                    </div>
+                </div>
+                <div class="product-card__just-added-popover">
+                    <div class="product-card__just-added-popover-inner">
+                        <span class="product-card__just-added-popover-icon">
+                            <svg width="14" height="14" aria-hidden="true">
+                                <use xlink:href="#compare-filled"></use>
+                            </svg>
+                        </span>
+                        Добавили товар к сравнению. <a href="#">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card__compatibility">
+                <button class="product-card__compatibility-btn">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#compatibility"></use>
+                    </svg>
+                </button>
+                <div class="product-card__popover">
+                    <div class="product-card__popover-inner">
+                        Совместимость с а/м
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="product-card__tags">
+        <div class="product-card__tag">
+            Trialli
+        </div>
+        <div class="product-card__tag product-card__tag--filled">
+            NEW
+        </div>
+    </div>
+    <h3 class="product-card__title">
+        Большое название товара в несколько строк
+    </h3>
+    <div class="product-card__bottom-wrapper">
+        <div class="product-card__price">
+            <div class="product-card__price-current">
+                57 500
+            </div>
+            <div class="product-card__price-old">
+                65 800
+            </div>
+        </div>
+        <div class="product-card__add-to-cart">
+            <button class="product-card__add-to-cart-btn">
+                <svg width="14" height="14" aria-hidden="true">
+                    <use xlink:href="#plus"></use>
+                </svg>
+            </button>
+            <div class="product-card__add-to-cart-counter">
+                <button class="product-card__add-to-cart-counter-btn" type="button">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#counter-minus"></use>
+                    </svg>
+                </button>
+                <input type="text" class="product-card__add-to-cart-counter-value" value="1 х 57 500" readonly="">
+                <button class="product-card__add-to-cart-counter-btn" type="button">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#counter-plus"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
