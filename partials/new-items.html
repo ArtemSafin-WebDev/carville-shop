@@ -29,21 +29,41 @@
                     <li class="new-items__nav-list-item">
                         <a href="#" class="new-items__nav-link js-tabs-btn">
                             Carville racing
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
                         <a href="#" class="new-items__nav-link js-tabs-btn">
                             Trialli
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
                         <a href="#" class="new-items__nav-link js-tabs-btn">
                             Airline
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
                         <a href="#" class="new-items__nav-link js-tabs-btn">
                             Starvolt
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                 </ul>
@@ -69,57 +89,33 @@
                     <div class="new-items__slider-wrapper">
                         <div class="swiper">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
+                                {{#times 6}}
+                                    <div class="swiper-slide">
+                                        {{> product-card }}
+                                    </div>
+                                {{/times}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="new-items__tab-item js-tabs-item">
-                <div class="new-items__slider">
-                    <div class="new-items__slider-wrapper">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
-                                </div>
-                                <div class="swiper-slide">
-                                    {{> product-card }}
+            {{#times 5}}
+                <div class="new-items__tab-item js-tabs-item">
+                    <div class="new-items__slider">
+                        <div class="new-items__slider-wrapper">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    {{#times 6}}
+                                        <div class="swiper-slide">
+                                            {{> product-card }}
+                                        </div>
+                                    {{/times}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {{/times}}
         </div>
     </div>
 </section>

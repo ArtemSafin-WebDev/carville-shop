@@ -181,14 +181,22 @@
 
 .promo__slider-card {
   padding: 1.6rem;
-  overflow: hidden;
-  overflow: clip;
-  border-radius: 3rem;
+
   display: flex;
   flex-direction: column;
   aspect-ratio: 292 / 504;
   position: relative;
   z-index: 1;
+}
+
+.promo__slider-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  overflow: clip;
+  border-radius: 3rem;
+
   &::after {
     content: "";
     position: absolute;

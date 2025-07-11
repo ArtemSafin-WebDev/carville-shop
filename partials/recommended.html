@@ -4,36 +4,11 @@
             Рекомендуем
         </h2>
         <ul class="recommended__list">
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
-            <li class="recommended__list-item">
-                {{> product-card }}
-            </li>
+            {{#times 10}}
+                <li class="recommended__list-item">
+                    {{> product-card }}
+                </li>
+            {{/times}}
         </ul>
     </div>
 </section>
