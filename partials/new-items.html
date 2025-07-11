@@ -7,32 +7,42 @@
             <div class="new-items__nav">
                 <ul class="new-items__nav-list">
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link active">
+                        <a href="#" class="new-items__nav-link js-tabs-btn active">
                             Все
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link">
+                        <a href="#" class="new-items__nav-link js-tabs-btn">
                             Luzar
+                            <div class="new-items__nav-link-arrow">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#diagonal-arrow"></use>
+                                </svg>
+                            </div>
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link">
+                        <a href="#" class="new-items__nav-link js-tabs-btn">
                             Carville racing
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link">
+                        <a href="#" class="new-items__nav-link js-tabs-btn">
                             Trialli
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link">
+                        <a href="#" class="new-items__nav-link js-tabs-btn">
                             Airline
                         </a>
                     </li>
                     <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link">
+                        <a href="#" class="new-items__nav-link js-tabs-btn">
                             Starvolt
                         </a>
                     </li>
@@ -53,27 +63,59 @@
                 </button>
             </div>
         </div>
-        <div class="new-items__slider">
-            <div class="new-items__slider-wrapper">
-                <div class="swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            {{> product-card }}
+        <div class="new-items__tab-items">
+            <div class="new-items__tab-item active js-tabs-item">
+                <div class="new-items__slider">
+                    <div class="new-items__slider-wrapper">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="swiper-slide">
-                            {{> product-card }}
-                        </div>
-                        <div class="swiper-slide">
-                            {{> product-card }}
-                        </div>
-                        <div class="swiper-slide">
-                            {{> product-card }}
-                        </div>
-                        <div class="swiper-slide">
-                            {{> product-card }}
-                        </div>
-                        <div class="swiper-slide">
-                            {{> product-card }}
+                    </div>
+                </div>
+            </div>
+            <div class="new-items__tab-item js-tabs-item">
+                <div class="new-items__slider">
+                    <div class="new-items__slider-wrapper">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                                <div class="swiper-slide">
+                                    {{> product-card }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
