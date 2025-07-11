@@ -4,7 +4,6 @@
 .promo {
   @include utils.blockWrapper;
   margin-bottom: 9.4rem;
-  padding-top: 10rem;
 }
 
 .promo__content {
@@ -114,6 +113,10 @@
     flex-direction: column;
     height: auto;
     box-sizing: border-box;
+  }
+
+  .swiper-creative .swiper-slide {
+    overflow: visible;
   }
 }
 

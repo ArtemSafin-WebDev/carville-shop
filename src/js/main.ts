@@ -2,12 +2,14 @@ import "virtual:svg-icons-register";
 import "../scss/style.scss";
 import newItems from "./newItems";
 import promo from "./promo";
-import tabs from "./tabs";
+import sales from "./sales";
+import header from "./header";
 
 document.addEventListener("DOMContentLoaded", () => {
+  header();
   newItems();
   promo();
-  // tabs();
+  sales();
 });
 
 window.addEventListener("load", () => {

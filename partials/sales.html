@@ -1,0 +1,42 @@
+<section class="sales">
+    <div class="sales__content">
+        <div class="sales__top-row">
+            <h2 class="sales__heading">
+                акции
+            </h2>
+            <a href="#" class="sales__more-link">
+                См. все
+                <span class="sales__more-link-arrow">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#diagonal-arrow"></use>
+                    </svg>
+                </span>
+            </a>
+            <div class="sales__arrows">
+                <button class="sales__arrow sales__arrow--prev">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#arrow-left"></use>
+                    </svg>
+                </button>
+                <button class="sales__arrow sales__arrow--next">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#arrow-right"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="sales__slider">
+            <div class="sales__slider-wrapper">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        {{#times 6}}
+                            <div class="swiper-slide">
+                                {{> product-card }}
+                            </div>
+                        {{/times}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

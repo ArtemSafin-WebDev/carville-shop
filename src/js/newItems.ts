@@ -30,8 +30,9 @@ export default function newItems() {
         ?.querySelector<HTMLElement>(".swiper");
       if (!container) return;
       instance = new Swiper(container, {
-        slidesPerView: 5,
+        slidesPerView: "auto",
         spaceBetween: 0,
+        watchSlidesProgress: true,
         modules: [Navigation],
         speed: 600,
         navigation: {
