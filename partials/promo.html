@@ -4,37 +4,114 @@
             промо видео
         </h2>
         <div class="promo__nav">
+            <button class="promo__nav-toggle">
+                <span class="promo__nav-toggle-text">
+                    Все
+                </span>
+                <span class="promo__nav-toggle-icon">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#arrow-down"></use>
+                    </svg>
+                </span>
+            </button>
             <div class="promo__nav-dropdown">
                 <div class="promo__nav-dropdown-inner">
+                    <div class="promo__nav-dropdown-header">
+                        <h3 class="promo__nav-dropdown-heading">
+                            Выберите бренд
+                        </h3>
+                        <button class="promo__nav-dropdown-close">
+                            <svg width="14" height="14" aria-hidden="true">
+                                <use xlink:href="#close"></use>
+                            </svg>
+                        </button>
+                    </div>
                     <ul class="promo__nav-list">
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn active" type="button">
-                                Все
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Все
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn" type="button">
-                                Luzar
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Luzar
+                                    </span>
+                                    <span class="promo__nav-btn-text">
+                                        Запчасти, системы охлаждения
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn" type="button">
-                                Carville racing
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Carville racing
+                                    </span>
+                                    <span class="promo__nav-btn-text">
+                                        Тех. жидкости, автохимия, фильтры
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn" type="button">
-                                Trialli
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Trialli
+                                    </span>
+                                    <span class="promo__nav-btn-text">
+                                        Запчасти, автоаксессуары
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn" type="button">
-                                Airline
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Airline
+                                    </span>
+                                    <span class="promo__nav-btn-text">
+                                        Автоаксессуары, инструменты, дооснащение авто
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                         <li class="promo__nav-list-item">
                             <button class="promo__nav-btn" type="button">
-                                Starvolt
+                                <span class="promo__nav-btn-wrapper">
+                                    <span class="promo__nav-btn-title">
+                                        Starvolt
+                                    </span>
+                                    <span class="promo__nav-btn-text">
+                                        Генераторы, стартеры, запчасти
+                                    </span>
+                                </span>
+                                <span class="promo__nav-btn-mark">
+
+                                </span>
                             </button>
                         </li>
                     </ul>
@@ -43,10 +120,13 @@
         </div>
         <div class="promo__wrapper">
             <div class="promo__bg">
-                <img class="promo__bg-image" src="/images/promo-bg.webp" alt="">
+                <picture>
+                    <source srcset="/images/promo-bg-mobile.webp" media="(max-width: 576px)">
+                    <img class="promo__bg-image" src="/images/promo-bg.webp" alt="">
+                </picture>
             </div>
             <div class="promo__tabs">
-                <div class="promo__tabs-item">
+                <div class="promo__tabs-item active">
                     <div class="promo__slider">
                         <button class="promo__arrow promo__arrow--prev" type="button">
                             <svg width="14" height="14" aria-hidden="true">
@@ -93,6 +173,55 @@
                         </div>
                     </div>
                 </div>
+                {{#times 5}}
+                    <div class="promo__tabs-item">
+                        <div class="promo__slider">
+                            <button class="promo__arrow promo__arrow--prev" type="button">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#arrow-left"></use>
+                                </svg>
+                            </button>
+                            <div class="promo__wrapper-inner">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                        {{#times 5}}
+                                            <div class="swiper-slide">
+                                                <a href="#" class="promo__slider-card">
+                                                    <div class="promo__slider-card-bg">
+
+                                                    </div>
+                                                    <div class="promo__slider-card-inner">
+                                                        <div class="promo__slider-card-image-container">
+                                                            <img class="promo__slider-card-image"
+                                                                src="/images/promo.webp" alt="">
+                                                            <div class="promo__slider-card-play">
+                                                                <svg width="14" height="14" aria-hidden="true">
+                                                                    <use xlink:href="#play"></use>
+                                                                </svg>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="promo__slider-card-text">
+                                                            Название видео в несколько строк на затемненной подложке
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {{/times}}
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="promo__arrow promo__arrow--next" type="button">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#arrow-right"></use>
+                                </svg>
+                            </button>
+                            <div class="promo__slider-pagination">
+
+                            </div>
+                        </div>
+                    </div>
+                {{/times}}
             </div>
         </div>
     </div>

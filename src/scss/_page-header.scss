@@ -3,6 +3,10 @@
 
 .page-header {
   @include utils.blockWrapper;
+
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .page-header__content {

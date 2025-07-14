@@ -5,68 +5,150 @@
         </h2>
         <div class="new-items__top-row">
             <div class="new-items__nav">
-                <ul class="new-items__nav-list">
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn active">
-                            Все
-                            <div class="new-items__nav-link-arrow">
+                <button class="new-items__nav-toggle">
+                    <span class="new-items__nav-toggle-text">
+                        Все
+                    </span>
+                    <span class="new-items__nav-toggle-icon">
+                        <svg width="14" height="14" aria-hidden="true">
+                            <use xlink:href="#arrow-down"></use>
+                        </svg>
+                    </span>
+                </button>
+                <div class="new-items__nav-dropdown">
+                    <div class="new-items__nav-dropdown-inner">
+                        <div class="new-items__nav-dropdown-header">
+                            <h3 class="new-items__nav-dropdown-heading">
+                                Выберите бренд
+                            </h3>
+                            <button class="new-items__nav-dropdown-close">
                                 <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
+                                    <use xlink:href="#close"></use>
                                 </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn">
-                            Luzar
-                            <div class="new-items__nav-link-arrow">
-                                <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn">
-                            Carville racing
-                            <div class="new-items__nav-link-arrow">
-                                <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn">
-                            Trialli
-                            <div class="new-items__nav-link-arrow">
-                                <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn">
-                            Airline
-                            <div class="new-items__nav-link-arrow">
-                                <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="new-items__nav-list-item">
-                        <a href="#" class="new-items__nav-link js-tabs-btn">
-                            Starvolt
-                            <div class="new-items__nav-link-arrow">
-                                <svg width="14" height="14" aria-hidden="true">
-                                    <use xlink:href="#diagonal-arrow"></use>
-                                </svg>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                            </button>
+                        </div>
+                        <ul class="new-items__nav-list">
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn active">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Все
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Luzar
+                                        </span>
+                                        <span class="new-items__nav-link-text">
+                                            Запчасти, системы охлаждения
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Carville racing
+                                        </span>
+                                        <span class="new-items__nav-link-text">
+                                            Тех. жидкости, автохимия, фильтры
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Trialli
+                                        </span>
+                                        <span class="new-items__nav-link-text">
+                                            Запчасти, автоаксессуары
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Airline
+                                        </span>
+                                        <span class="new-items__nav-link-text">
+                                            Автоаксессуары, инструменты, дооснащение авто
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="new-items__nav-list-item">
+                                <a href="#" class="new-items__nav-link js-tabs-btn">
+                                    <span class="new-items__nav-link-wrapper">
+                                        <span class="new-items__nav-link-title">
+                                            Starvolt
+                                        </span>
+                                        <span class="new-items__nav-link-text">
+                                            Генераторы, стартеры, запчасти
+                                        </span>
+                                    </span>
+                                    <span class="new-items__nav-link-checkmark">
+
+                                    </span>
+
+                                    <div class="new-items__nav-link-arrow">
+                                        <svg width="14" height="14" aria-hidden="true">
+                                            <use xlink:href="#diagonal-arrow"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="new-items__nav-corner"></div>
 
             </div>
@@ -90,10 +172,25 @@
                         <div class="swiper">
                             <div class="swiper-wrapper">
                                 {{#times 6}}
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide new-items__slide">
                                         {{> product-card }}
                                     </div>
                                 {{/times}}
+                                <div class="swiper-slide new-items__more">
+                                    <a href="#" class="new-items__more-link">
+                                        <span class="new-items__more-link-text">
+                                            Смотреть все новинки бренда
+                                        </span>
+                                        <span class="new-items__more-link-brand">
+                                            Carville Racing
+                                            <span class="new-items__more-link-icon">
+                                                <svg width="14" height="14" aria-hidden="true">
+                                                    <use xlink:href="#diagonal-arrow"></use>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

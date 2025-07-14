@@ -5,6 +5,10 @@
   @include utils.blockWrapper;
   margin-bottom: 10rem;
   padding-top: 10rem;
+
+  @include media.breakpoint(small-mobile) {
+    margin-bottom: 6rem;
+  }
 }
 
 .sales__content {
@@ -19,6 +23,11 @@
   gap: 1.5rem;
   padding: 0 2.4rem;
   margin-bottom: 2.4rem;
+
+  @include media.breakpoint(small-mobile) {
+    padding: 0;
+    margin-bottom: 1.6rem;
+  }
 }
 
 .sales__heading {
@@ -27,6 +36,14 @@
   font-weight: 700;
   line-height: 3.2rem;
   text-transform: uppercase;
+
+  @include media.breakpoint(small-mobile) {
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 115%;
+    text-transform: uppercase;
+  }
 }
 
 .sales__more-link {
@@ -56,6 +73,17 @@
       }
     }
   }
+
+  @include media.breakpoint(small-mobile) {
+    padding: 0.4rem;
+    padding-left: 1.6rem;
+    gap: 1.2rem;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin-left: auto;
+  }
 }
 
 .sales__more-link-arrow {
@@ -72,6 +100,16 @@
     fill: #2c2d2e;
     transition: fill 0.2s;
   }
+
+  @include media.breakpoint(small-mobile) {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
 }
 
 .sales__arrows {
@@ -79,6 +117,10 @@
   align-items: center;
   margin-left: auto;
   gap: 0.8rem;
+
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 
   &:has(.swiper-button-lock) {
     display: none;
@@ -132,6 +174,18 @@
   border-radius: 3rem;
   overflow: hidden;
   overflow: clip;
+
+  @include media.breakpoint(small-mobile) {
+    border-radius: 0;
+    background: none;
+    overflow: visible;
+  }
+
+  .swiper {
+    @include media.breakpoint(small-mobile) {
+      overflow: visible;
+    }
+  }
   .swiper-slide {
     height: auto;
     display: flex;
@@ -140,6 +194,21 @@
     width: 20%;
     position: static;
     border-right: 1px solid #efefef;
+
+    @include media.breakpoint(small-mobile) {
+      width: 17.4rem;
+      background-color: #fff;
+
+      &:first-child {
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+      }
+    }
 
     &:last-child {
       border-right-color: transparent;
@@ -161,4 +230,8 @@
 
 .sales__slider-wrapper {
   clip-path: inset(0 1px 0 0);
+
+  @include media.breakpoint(small-mobile) {
+    clip-path: none;
+  }
 }
