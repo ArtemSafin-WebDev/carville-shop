@@ -244,10 +244,73 @@
   border-radius: 50%;
   border: 1px solid #d1d1d2;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
+  position: relative;
+  transition: border-color 0.2s, background-color 0.2s;
   svg {
     width: 1.6rem;
     height: 1.6rem;
     fill: var(--text-color);
+    transition: fill 0.2s;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: var(--primary-color);
+
+      svg {
+        fill: var(--primary-color);
+      }
+      .page-header__link-popover {
+        opacity: 1;
+        visibility: inherit;
+        transition: opacity 0.4s, visibility 0.4s;
+      }
+    }
+  }
+}
+
+.page-header__link-popover {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding-top: 1rem;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0s linear 0.4s;
+
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
+}
+
+.page-header__link-popover-inner {
+  text-align: center;
+  width: max-content;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  padding-block: 0.8rem;
+  padding-inline: 1.2rem;
+  border-radius: 1.2rem;
+  background: #2c2d2e;
+  color: white;
+  position: relative;
+  &::before {
+    content: "";
+    border-radius: 0.4rem 0 0rem 0rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    z-index: -1;
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    bottom: 100%;
+    background: #2c2d2e;
+    margin-bottom: -0.6rem;
   }
 }

@@ -299,6 +299,7 @@
   aspect-ratio: 292 / 504;
   position: relative;
   z-index: 1;
+  user-select: none;
 
   @include media.breakpoint(small-mobile) {
     aspect-ratio: 174 / 300;
@@ -371,7 +372,7 @@
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.8rem;
+  line-height: 1.285;
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   margin: -2px;
   position: relative;

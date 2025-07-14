@@ -237,3 +237,7 @@ select:-webkit-autofill:focus {
   overflow-x: hidden;
   overflow-x: clip;
 }
+
+picture {
+  display: contents;
+}

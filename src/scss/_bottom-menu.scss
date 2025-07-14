@@ -1,0 +1,112 @@
+@use "media";
+@use "utils";
+
+.bottom-menu {
+  position: fixed;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 1rem;
+  width: auto;
+  height: auto;
+  z-index: 60;
+  @include utils.blockWrapper;
+  display: none;
+
+  @include media.breakpoint(small-mobile) {
+    display: block;
+  }
+}
+
+.bottom-menu__content {
+  @include utils.blockContent;
+  border-radius: 2rem;
+  background: white;
+  box-shadow: 0rem 1rem 3.5rem 0.8392rem rgba(56, 28, 12, 0.15);
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-gap: 0.5rem;
+  justify-items: center;
+  align-items: flex-end;
+}
+
+.bottom-menu__link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4rem;
+  color: #b2b4b3;
+
+  &:link,
+  &:visited {
+    color: #b2b4b3;
+  }
+
+  &.active {
+    color: var(--text-color);
+    .bottom-menu__link-icon-inner {
+      background-color: var(--text-color);
+      border-color: var(--text-color);
+      svg {
+        fill: white;
+      }
+    }
+  }
+}
+
+.bottom-menu__link-icon-inner {
+  display: grid;
+  place-items: center;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #e8e8e8;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: var(--text-color);
+  }
+}
+
+.bottom-menu__link-icon {
+  width: 3.2rem;
+  height: 3.2rem;
+
+  &--orange {
+    width: 4.8rem;
+    height: 4.8rem;
+
+    margin-top: -6rem;
+
+    margin-bottom: 0.4rem;
+    position: relative;
+    z-index: 10;
+
+    &::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      inset: -0.8rem;
+      z-index: 1;
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    .bottom-menu__link-icon-inner {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      svg {
+        fill: white;
+      }
+    }
+  }
+}

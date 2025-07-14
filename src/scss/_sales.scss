@@ -4,7 +4,6 @@
 .sales {
   @include utils.blockWrapper;
   margin-bottom: 10rem;
-  padding-top: 10rem;
 
   @include media.breakpoint(small-mobile) {
     margin-bottom: 6rem;
