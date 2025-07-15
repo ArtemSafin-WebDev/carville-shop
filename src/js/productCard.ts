@@ -57,11 +57,6 @@ export default function productCard() {
       ".product-card__add-to-favorite .product-card__popover.product-card__popover--added"
     );
 
-    console.log(
-      addToFavoriteBtn,
-      addToFavoriteBtnPopover,
-      addToFavoriteBtnPopoverAdded
-    );
     if (
       addToFavoriteBtn &&
       addToFavoriteBtnPopover &&

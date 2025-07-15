@@ -1,15 +1,15 @@
-<div class="finder">
+<div class="finder js-finder">
     <div class="finder__content">
         <div class="finder__top">
             <div class="finder__modes">
                 <div class="finder__modes-btns">
-                    <button class="finder__mode-btn active">
+                    <button class="finder__mode-btn js-finder-mode-btn active">
                         <svg width="14" height="14" aria-hidden="true">
                             <use xlink:href="#finder-mode-car"></use>
                         </svg>
                         Подобрать запчасти по авто
                     </button>
-                    <button class="finder__mode-btn">
+                    <button class="finder__mode-btn js-finder-mode-btn">
                         <svg width="14" height="14" aria-hidden="true">
                             <use xlink:href="#finder-mode-vin"></use>
                         </svg>
@@ -17,7 +17,7 @@
                     </button>
                 </div>
             </div>
-            <button class="finder__my-auto" type="button">
+            <button class="finder__my-auto js-show-my-auto-btn" type="button">
                 <svg width="14" height="14" aria-hidden="true">
                     <use xlink:href="#finder-my-car"></use>
                 </svg>
@@ -27,118 +27,122 @@
                 <span class="finder__my-auto-amount">
                     3
                 </span>
+                <svg width="14" height="14" aria-hidden="true">
+                    <use xlink:href="#clear"></use>
+                </svg>
             </button>
         </div>
-        <form action="/" method="POST" class="finder__form">
-            <div class="finder__bottom">
-                <div class="finder__selects">
-                    <div class="finder__select-wrapper">
-                        <div class="finder__select js-select">
-                            <input type="hidden" name="brand" class="js-select-input">
-                            <h3 class="finder__select-title">
-                                Марка*
-                            </h3>
-                            <div class="finder__mobile-popup">
-                                <div class="finder__mobile-popup-inner">
-                                    <div class="finder__mobile-popup-header">
-                                        <button class="finder__mobile-popup-back" type="button">
-                                            <svg width="14" height="14" aria-hidden="true">
-                                                <use xlink:href="#back"></use>
-                                            </svg>
-                                            марка
-                                        </button>
-                                    </div>
-                                    <div class="finder__select-btn-wrapper">
-                                        <label class="finder__select-btn-label">
-                                            <input type="text" class="finder__select-input js-select-search"
-                                                placeholder="Начните ввод" name="brandsearch">
-                                            <span class="finder__select-btn-label-text">
-                                                Марка
-                                            </span>
-                                            <div class="finder__select-arrow">
-                                                <svg width="14" height="14" aria-hidden="true">
-                                                    <use xlink:href="#select-arrow"></use>
-                                                </svg>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="finder__select-dropdown js-select-dropdown">
-                                        <div class="finder__select-dropdown-inner">
-                                            <div class="finder__select-scroll-wrapper">
-                                                <div class="finder__select-options">
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="BAIC">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            BAIC
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="BAW">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            BAW
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="BelAZ">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            BelAZ
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="BELGEE">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            BELGEE
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="Bentley">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            Bentley
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="BMW">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            BMW
-                                                        </span>
-                                                    </label>
-                                                    <label class="finder__select-option js-select-option">
-                                                        <input type="radio" name="brand"
-                                                            class="finder__select-option-input" value="Bogdan">
-                                                        <span class="finder__select-option-text js-select-option-text">
-                                                            Bogdan
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+        <div class="finder__bottom">
+            <div class="finder__find-by-auto active js-auto-mode-layer">
+                <form action="/" method="POST" class="finder__auto-form js-auto-mode-form">
+                    <div class="finder__auto-selects">
+                        {{> brand-select }}
+                        {{> model-select }}
+                        {{> years-select }}
+                        {{> engine-select }}
+                        {{> modification-select }}
+                    </div>
+                    <div class="finder__submit-btn-wrapper">
+                        <button class="finder__submit-btn js-auto-mode-submit-btn" type="submit">
+                            <svg width="14" height="14" aria-hidden="true">
+                                <use xlink:href="#find"></use>
+                            </svg>
+                            <span class="finder__submit-btn-desktop-text">
+                                Подобрать
+                            </span>
+                            <span class="finder__submit-btn-mobile-text">
+                                Показать 1 029 товаров
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="finder__find-by-vin js-vin-mode-layer">
+                <form action="/" method="POST" class="finder__find-by-vin-form js-vin-mode-form">
+                    <div class="finder__find-by-vin-form-fields">
+                        <div class="finder__find-by-vin-form-field">
+                            {{> brand-select }}
+                        </div>
+                        <div class="finder__find-by-vin-form-field">
+                            {{> model-select }}
+                        </div>
+                        <div class="finder__find-by-vin-form-field">
+                            <div class="finder__text-input-wrapper">
+                                <label class="finder__text-input-label">
+                                    <input type="text" class="finder__text-input" placeholder="VIN*" name="vin"
+                                        required="" autocomplete="off">
+                                    <span class="finder__text-input-label-text">
+                                        VIN*</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="finder__find-by-vin-form-field">
+                            <div class="finder__text-input-wrapper">
+                                <label class="finder__text-input-label">
+                                    <input type="text" class="finder__text-input" placeholder="ФИО*" name="name"
+                                        required="" autocomplete="off">
+                                    <span class="finder__text-input-label-text">
+                                        ФИО*</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="finder__find-by-vin-form-field">
+                            <div class="finder__text-input-wrapper">
+                                <label class="finder__text-input-label">
+                                    <input type="tel" class="finder__text-input" placeholder="Телефон*" name="phone"
+                                        required="" autocomplete="off">
+                                    <span class="finder__text-input-label-text">
+                                        Телефон*</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="finder__find-by-vin-form-field">
+                            <div class="finder__text-input-wrapper">
+                                <label class="finder__text-input-label">
+                                    <input type="email" class="finder__text-input" placeholder="Email" name="email"
+                                        autocomplete="off">
+                                    <span class="finder__text-input-label-text">
+                                        Email</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="finder__find-by-vin-form-field finder__find-by-vin-form-field--large">
+                            <div class="finder__text-input-wrapper">
+                                <label class="finder__text-input-label finder__text-input-label--stretch">
+                                    <textarea name="comment" class="finder__text-input"
+                                        placeholder="Интересующие запчасти*" autocomplete="off" required=""></textarea>
+                                    <span class="finder__text-input-label-text">
+                                        Интересующие запчасти*</span>
+                                </label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="finder__submit-btn-wrapper">
-                    <button class="finder__submit-btn" type="submit">
-                        <svg width="14" height="14" aria-hidden="true">
-                            <use xlink:href="#find"></use>
-                        </svg>
-                        <span class="finder__submit-btn-desktop-text">
-                            Подобрать
-                        </span>
-                        <span class="finder__submit-btn-mobile-text">
-                            Показать 1 029 товаров
-                        </span>
-                    </button>
-                </div>
+                    <div class="finder__find-by-vin-form-controls">
+                        <div class="finder__find-by-vin-form-policy-wrapper">
+                            <label class="finder__find-by-vin-form-policy">
+                                <input type="checkbox" name="policy" class="finder__find-by-vin-form-policy-input"
+                                    required="">
+                                <span class="finder__find-by-vin-form-policy-mark">
+                                    <svg width="14" height="14" aria-hidden="true">
+                                        <use xlink:href="#checkmark"></use>
+                                    </svg>
+                                </span>
+                                <span class="finder__find-by-vin-form-policy-text">
+                                    Даю согласие на обработку персональных данных и <a href="#">политику
+                                        конфиденциальности</a>
+                                </span>
+                            </label>
+                        </div>
+                        <button class="finder__find-by-vin-form-submit" type="submit">
+                            <svg width="14" height="14" aria-hidden="true">
+                                <use xlink:href="#submit"></use>
+                            </svg>
+                            Отправить запрос
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
 
     </div>
 </div>

@@ -1,24 +1,28 @@
 export default class Select {
-  protected searchTerm: string = "";
   protected searchInput: HTMLInputElement | null = null;
-  protected mainInput: HTMLInputElement | null = null;
-  private rootElement: HTMLElement;
-  private dropdownElement: HTMLElement | null = null;
-  private destroyFn: (() => void) | null = null;
-  private options: HTMLElement[] = [];
-  private selectType: "single" | "multiple" = "single";
+  protected rootElement: HTMLElement;
+  protected dropdownElement: HTMLElement | null = null;
+  protected clearBtn: HTMLButtonElement | null = null;
+  protected destroyFn: (() => void) | null = null;
+  protected options: HTMLElement[] = [];
+  protected selectType: "single" | "multiple" = "single";
+
   constructor(rootElement: HTMLElement) {
     this.rootElement = rootElement;
     this.searchInput =
       rootElement.querySelector<HTMLInputElement>(".js-select-search");
-    this.mainInput =
-      rootElement.querySelector<HTMLInputElement>(".js-select-input");
+
     this.dropdownElement = rootElement.querySelector<HTMLElement>(
       ".js-select-dropdown"
     );
     this.options = Array.from(
       rootElement.querySelectorAll<HTMLElement>(".js-select-option")
     );
+    this.clearBtn =
+      rootElement.querySelector<HTMLButtonElement>(".js-select-clear");
+
+    if (!this.searchInput || !this.dropdownElement)
+      throw new Error("Not all required elements are present");
 
     if (this.options[0].querySelector("input")?.type === "checkbox") {
       this.selectType = "multiple";
@@ -26,29 +30,64 @@ export default class Select {
     this.init();
   }
 
-  public setValue(value: string) {
-    if (!this.mainInput) return;
-    this.mainInput.value = value;
-    this.mainInput.readOnly = true;
-  }
+  public setValue = (value: string, text: string) => {
+    if (!this.searchInput) return;
 
-  public clearValue() {
-    if (!this.mainInput) return;
-    this.mainInput.value = "";
-    this.mainInput.readOnly = false;
-  }
+    this.searchInput.value = text;
+    this.searchInput.readOnly = true;
+    this.rootElement.classList.add("option-selected");
+    this.handleSearch("");
+  };
 
-  public getSelectedValue() {
-    if (!this.mainInput) return "";
-    return this.mainInput.value.trim();
-  }
+  public clearValue = () => {
+    if (!this.searchInput) return;
 
-  public showDropdown() {
+    this.searchInput.value = "";
+    this.searchInput.readOnly = false;
+    this.rootElement.classList.remove("option-selected");
+    this.options.forEach((option) => {
+      const input = option.querySelector<HTMLInputElement>("input");
+      if (input) input.checked = false;
+    });
+    this.handleSearch("");
+  };
+
+  public showDropdown = () => {
     this.dropdownElement?.classList.add("active");
-  }
+  };
 
-  protected handleSearch(query: string) {
-    this.options.filter((option) => {
+  public hideDropdown = () => {
+    this.dropdownElement?.classList.remove("active");
+  };
+
+  private getCheckedOption = () => {
+    const checkedOption = this.options.find((option) => {
+      const optionInput = option.querySelector<HTMLInputElement>(
+        'input[type="radio"]'
+      );
+      if (optionInput?.checked) return true;
+      return false;
+    });
+    if (!checkedOption) return null;
+    const value = checkedOption.querySelector<HTMLInputElement>(
+      'input[type="radio"]'
+    )!.value;
+    const text = checkedOption
+      .querySelector<HTMLElement>(".js-select-option-text")!
+      .textContent!.trim();
+
+    console.log(
+      "Checked option text element",
+      checkedOption.querySelector<HTMLElement>(".js-select-option-text")
+    );
+    return {
+      value,
+      text,
+    };
+  };
+
+  protected handleSearch = (query: string) => {
+    const filteredOptions = this.options.filter((option) => {
       if (query === "") return true;
       const optionText = option.querySelector<HTMLElement>(
         ".js-select-option-text"
@@ -58,11 +97,30 @@ export default class Select {
         return true;
       return false;
     });
-  }
+    this.options.forEach((option) => {
+      if (filteredOptions.includes(option)) {
+        option.classList.remove("hidden");
+      } else {
+        option.classList.add("hidden");
+      }
+    });
+  };
 
-  private init() {
+  protected handleOptionSelection = () => {
+    const checked = this.getCheckedOption();
+    console.log("Handle option selection", checked);
+    if (checked) {
+      this.setValue(checked.value, checked.text);
+    } else {
+      this.clearValue();
+    }
+    this.hideDropdown();
+  };
+
+  private init = () => {
     const abortController = new AbortController();
     const signal = abortController.signal;
+
     this.searchInput?.addEventListener(
       "focus",
       () => {
@@ -73,17 +131,55 @@ export default class Select {
       }
     );
 
-    this.searchInput?.addEventListener("input", (event) => {
-      const target = event.target as HTMLInputElement;
-      this.handleSearch(target.value);
+    document.addEventListener(
+      "click",
+      (event) => {
+        const target = event.target as HTMLElement;
+        if (this.rootElement.contains(target)) return;
+        this.hideDropdown();
+      },
+      {
+        signal,
+      }
+    );
+
+    this.searchInput?.addEventListener(
+      "input",
+      (event) => {
+        const target = event.target as HTMLInputElement;
+        this.handleSearch(target.value);
+      },
+      {
+        signal,
+      }
+    );
+
+    this.options.forEach((option) => {
+      const input = option.querySelector<HTMLInputElement>("input");
+      input?.addEventListener("change", this.handleOptionSelection, {
+        signal,
+      });
     });
 
+    this.clearBtn?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.clearValue();
+      },
+      {
+        signal,
+      }
+    );
+
     return () => {
+      this.clearValue();
+      this.hideDropdown();
       abortController.abort();
     };
-  }
+  };
 
-  public destroy() {
+  public destroy = () => {
     if (this.destroyFn) this.destroyFn();
-  }
+  };
 }

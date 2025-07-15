@@ -4,6 +4,7 @@
   --primary-color: #ff6e00;
   --primary-color-hover: #e56300;
   --primary-color-pressed: #cc5800;
+  --red: #f20000;
   --bg-color: #f6f6f6;
   --text-color: #2c2d2e;
   --lato: "Lato", sans-serif;
@@ -11,6 +12,6 @@
   --container-width: 135rem;
 
   @include media.breakpoint(mobile) {
-    --content-padding: 2rem;
+    --content-padding: 1.6rem;
   }
 }

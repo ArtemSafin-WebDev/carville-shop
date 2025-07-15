@@ -4,6 +4,41 @@
 .finder {
   display: flex;
   flex-direction: column;
+
+  .validation-error {
+    color: var(--red);
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4rem;
+    padding: 0 2rem;
+    margin-top: 0.4rem;
+  }
+
+  @include media.breakpoint(small-mobile) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior-y: contain;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.4s, visibility 0s linear 0.4s;
+    background-color: var(--bg-color);
+    opacity: 0;
+    visibility: hidden;
+    color: var(--text-color);
+    padding: 0 var(--content-padding);
+    padding-top: 1.6rem;
+    padding-bottom: 3rem;
+    opacity: 1;
+    visibility: inherit;
+    transition: opacity 0.4s, visibility 0.4s;
+  }
 }
 
 .finder__content {
@@ -27,6 +62,20 @@
   padding: 1.6rem;
   border-top-right-radius: 2.8rem;
   border-top-left-radius: 2.8rem;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    width: 2.8rem;
+    height: 2.8rem;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-image: url("../images/finder-corner.svg");
+    pointer-events: none;
+  }
   @include media.breakpoint(small-mobile) {
     display: contents;
   }
@@ -60,15 +109,6 @@
   border-radius: 2rem;
   transition: background-color 0.2s, color 0.2s;
 
-  @include media.breakpoint(small-mobile) {
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1.5rem;
-    padding: 1.2rem 1.6rem;
-    color: #565758;
-  }
-
   svg {
     flex-shrink: 0;
     width: 1.6rem;
@@ -79,6 +119,22 @@
   &.active {
     background-color: var(--text-color);
     color: white;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:not(.active):hover {
+      background-color: #e8e8e8;
+      color: #2c2d2e;
+    }
+  }
+
+  @include media.breakpoint(small-mobile) {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 1.2rem 1.6rem;
+    color: #565758;
   }
 }
 
@@ -92,6 +148,10 @@
   border-radius: 4rem;
   background-color: #fff;
   color: var(--text-color);
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
   &:link,
   &:visited {
     color: var(--text-color);
@@ -102,6 +162,21 @@
     height: 1.6rem;
     fill: currentColor;
     transition: fill 0.2s;
+    margin-top: 0.3rem;
+    &:last-child {
+      display: none;
+    }
+  }
+
+  &.active {
+    background-color: var(--primary-color);
+    color: white;
+
+    svg {
+      &:last-child {
+        display: block;
+      }
+    }
   }
 
   @include media.breakpoint(small-mobile) {
@@ -154,21 +229,58 @@
   border-bottom-right-radius: 2.8rem;
   border-top-right-radius: 2.8rem;
   padding: 1.6rem;
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
+  position: relative;
 
   @include media.breakpoint(small-mobile) {
     display: contents;
   }
 }
 
-.finder__selects {
+.finder__find-by-auto,
+.finder__find-by-vin {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.finder__auto-form {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  @include media.breakpoint(small-mobile) {
+    display: contents;
+  }
+}
+
+.finder__auto-selects {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   width: 30%;
   flex-grow: 1;
+
+  @include media.breakpointMF(mobile) {
+    .finder__select-wrapper {
+      &:nth-child(1) {
+        width: 17.6rem;
+      }
+      &:nth-child(2) {
+        width: 17.6rem;
+      }
+
+      &:nth-child(3) {
+        width: 11.6rem;
+      }
+      &:nth-child(4) {
+        width: 17.6rem;
+      }
+      &:nth-child(5) {
+        width: 17.6rem;
+      }
+    }
+  }
 
   @include media.breakpoint(small-mobile) {
     width: auto;
@@ -180,8 +292,9 @@
 }
 
 .finder__select-wrapper {
-  flex-grow: 1;
+  // flex-grow: 1;
   position: relative;
+
   @include media.breakpoint(small-mobile) {
     flex-grow: 0;
   }
@@ -190,9 +303,33 @@
 .finder__select {
   position: relative;
 
-  @include media.breakpointMF(mobile) {
-    &:nth-child(1) {
-      width: 17.6rem;
+  &:has(.finder__select-dropdown.active) .finder__select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  &:has(.finder__select-input:focus) {
+    .finder__select-btn-label {
+      border-color: var(--primary-color);
+    }
+
+    .finder__select-btn-label-text {
+      color: var(--text-color);
+    }
+
+    .finder__select-arrow {
+      svg {
+        fill: #8b8d8e;
+      }
+    }
+  }
+
+  &:has(.finder__select-input[readonly]) {
+    .finder__select-clear-btn {
+      display: grid;
+    }
+
+    .finder__select-arrow {
+      display: none;
     }
   }
 
@@ -221,6 +358,37 @@
   }
 }
 
+.finder__select-clear-btn {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border-radius: 0.8rem;
+  display: none;
+  transition: background-color 0.2s;
+  width: 2.4rem;
+  height: 2.4rem;
+
+  svg {
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: fill 0.2s;
+    fill: #8b8d8e;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgba(255, 110, 0, 0.05);
+      svg {
+        fill: var(--primary-color);
+      }
+    }
+  }
+}
+
 .finder__submit-btn {
   flex-shrink: 0;
   display: flex;
@@ -241,6 +409,7 @@
     fill: currentColor;
     width: 1.6rem;
     height: 1.6rem;
+    transition: transform 0.2s;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -280,11 +449,6 @@
   }
 }
 
-.finder__select-btn-wrapper {
-  // display: flex;
-  // align-items: center;
-}
-
 .finder__select-btn-label {
   display: flex;
   align-items: center;
@@ -296,6 +460,8 @@
   border: 1px solid #d1d1d2;
   background: white;
   position: relative;
+  transition: border-color 0.2s;
+  // padding-right: 5rem;
 }
 
 .finder__select-btn-label-text {
@@ -339,6 +505,8 @@
   line-height: 1.8rem;
   height: 1.8rem;
   color: var(--text-color);
+  text-overflow: ellipsis;
+  padding-right: 2rem;
 
   &::placeholder {
     color: #b2b4b3;
@@ -358,6 +526,11 @@
   margin-left: auto;
   width: 1.6rem;
   height: 1.6rem;
+  transition: transform 0.2s;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
 
   svg {
     display: block;
@@ -404,9 +577,10 @@
 }
 
 .finder__select-scroll-wrapper {
-  max-height: 30rem;
+  max-height: 20rem;
   overflow-x: hidden;
-
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
   &::-webkit-scrollbar {
     background-color: white;
     width: 0.4rem;
@@ -467,4 +641,279 @@
     height: 2.4rem;
     fill: currentColor;
   }
+}
+
+.finder__select-option {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.finder__select-option-checkmark {
+  display: none;
+}
+.finder__select-option-input {
+  display: none;
+}
+
+.finder__select-option-text {
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  padding: 0.8rem 1.6rem;
+  transition: background-color 0.2s;
+  display: block;
+  .finder__select-option-input:checked ~ & {
+    background-color: rgba(255, 110, 0, 0.05);
+  }
+
+  @include media.breakpoint(small-mobile) {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.2rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 1.2rem;
+  }
+}
+
+.finder__options-not-found {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.4rem 1.6rem;
+  transition: background-color 0.2s;
+  text-align: center;
+  color: #8b8d8e;
+  color: var(--primary-color);
+}
+
+.finder__select-dropdown-inner:has(.finder__select-option:not(.hidden))
+  .finder__options-not-found {
+  display: none;
+}
+
+.finder__find-by-vin-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.finder__find-by-vin-form-fields {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  grid-gap: 0.8rem;
+  grid-row-gap: 1.6rem;
+}
+
+.finder__find-by-vin-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.finder__find-by-vin-form-field--large {
+  grid-column: 4 / -1;
+  grid-row: 1 / 3;
+}
+
+.finder__text-input-label {
+  display: block;
+  position: relative;
+
+  &--stretch {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.finder__text-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.finder__text-input {
+  display: block;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  padding: 0 2rem;
+  border-radius: 2.4rem;
+  border: 1px solid #d1d1d2;
+  background: white;
+  transition: background-color 0.2s, color 0.2s;
+  height: 4.8rem;
+  display: block;
+  &::placeholder {
+    color: #b2b4b3;
+  }
+
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &.not-valid {
+    border-color: var(--red);
+  }
+}
+
+textarea.finder__text-input {
+  height: 11.2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  flex-grow: 1;
+
+  & ~ .finder__text-input-label-text {
+    top: 2.5rem;
+  }
+}
+
+.finder__text-input-label-text {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: #b2b4b3;
+  transition: all 0.2s;
+  pointer-events: none;
+  padding: 0.2rem 1rem;
+  border-radius: 0.9rem;
+
+  .finder__text-input:focus ~ &,
+  .finder__text-input:not(:placeholder-shown) ~ & {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4rem;
+    top: 0;
+    transform: translateY(-50%) translateY(-0.3rem);
+    background-color: #fff;
+    color: #8b8d8e;
+  }
+}
+
+.finder__find-by-vin-form-controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+}
+
+.finder__find-by-vin-form-policy-wrapper {
+  .validation-error {
+    display: none;
+  }
+
+  &:has(.validation-error) {
+    .finder__find-by-vin-form-policy-mark {
+      border-color: var(--red);
+    }
+  }
+}
+
+.finder__find-by-vin-form-policy {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.finder__find-by-vin-form-policy-input {
+  display: none;
+}
+
+.finder__find-by-vin-form-policy-mark {
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.4rem;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.2s, background-color 0.2s;
+  border: 1px solid #d1d1d2;
+
+  svg {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: opacity 0.2s;
+    opacity: 0;
+    fill: var(--text-color);
+  }
+
+  .finder__find-by-vin-form-policy-input:checked ~ & {
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+.finder__find-by-vin-form-policy-text {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  color: #8b8d8e;
+
+  a {
+    text-decoration-thickness: 1px;
+    text-decoration: underline;
+    transition: text-decoration-color 0.2s;
+    text-decoration-color: currentColor;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        text-decoration-color: transparent;
+      }
+    }
+  }
+}
+
+.finder__find-by-vin-form-submit {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.6rem;
+  background-color: var(--primary-color);
+  transition: background-color 0.2s, color 0.2s;
+  padding: 1.6rem 2rem;
+  border-radius: 7rem;
+  flex-shrink: 0;
+  color: white;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
+  }
+
+  &:active {
+    background-color: var(--primary-color-pressed);
+  }
+}
+
+.finder__select-group-inner {
+  position: relative;
+}
+
+.finder__select-group:has(.validation-error) .finder__select-btn-label {
+  border-color: var(--red);
 }

@@ -28,7 +28,7 @@ const defaultLocalization: Localization = {
     requiredField: "Обязательное поле",
     emailField: "Введите корректный E-mail",
     alphanumericField: "Разрешены только цифры и буквы",
-    phoneField: "Введите правильный номер телефона",
+    phoneField: "Неверный номер телефона",
   },
   en: {
     requiredField: "Field is required",
@@ -78,7 +78,7 @@ class Validator {
     }
     this.textFields = Array.from(
       form.querySelectorAll(
-        'input[type="text"], input[type="email"], input[type="tel"]'
+        'input[type="text"], input[type="email"], input[type="tel"], textarea'
       )
     );
     this.selects = Array.from(form.querySelectorAll("[data-required-select]"));
@@ -286,7 +286,14 @@ class Validator {
     select: HTMLElement,
     error: ValidationError | null
   ): void {
-    this.placeErrorMessage(select, error);
+    const selectErrorContainer = select.querySelector<HTMLElement>(
+      ".js-select-error-container"
+    );
+    if (selectErrorContainer) {
+      this.placeErrorMessage(selectErrorContainer, error);
+    } else {
+      this.placeErrorMessage(select, error);
+    }
   }
 
   public validate(): boolean {
