@@ -1,5 +1,9 @@
 import Select from "./Select";
 import Validator from "./Validator";
+import gsap from "gsap";
+import { Flip } from "gsap/all";
+
+gsap.registerPlugin(Flip);
 
 type Mode = "auto" | "vin";
 
@@ -15,6 +19,7 @@ export default class Finder {
   protected vinModeFormValidator: Validator | null = null;
   protected showMyAutoBtn: HTMLButtonElement | null = null;
   protected myAutoShown: boolean = false;
+  protected myAutoDropdown: HTMLElement | null = null;
 
   constructor(protected rootElement: HTMLElement) {
     this.modeBtns = Array.from(
@@ -31,6 +36,9 @@ export default class Finder {
     this.vinModeForm = this.rootElement.querySelector(".js-vin-mode-form");
     this.autoModeSubmitBtn = this.rootElement.querySelector(
       ".js-auto-mode-submit-btn"
+    );
+    this.myAutoDropdown = this.rootElement.querySelector(
+      ".js-saved-auto-dropdown"
     );
     this.showMyAutoBtn = this.rootElement.querySelector(".js-show-my-auto-btn");
     if (this.vinModeForm)
@@ -60,6 +68,7 @@ export default class Finder {
       this.autoModeLayer?.classList.remove("active");
       this.vinModeLayer?.classList.add("active");
       this.mode === "auto";
+      this.hideMyAuto();
     }
   };
 
@@ -67,11 +76,13 @@ export default class Finder {
     this.setMode("auto");
     this.showMyAutoBtn?.classList.add("active");
     this.myAutoShown = true;
+    this.myAutoDropdown?.classList.add("active");
   };
 
   public hideMyAuto = () => {
     this.showMyAutoBtn?.classList.remove("active");
     this.myAutoShown = false;
+    this.myAutoDropdown?.classList.remove("active");
   };
 
   protected handleVinModeFormSubmit = async (event: SubmitEvent) => {

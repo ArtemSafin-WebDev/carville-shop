@@ -75,6 +75,7 @@
     background-position: left bottom;
     background-image: url("../images/finder-corner.svg");
     pointer-events: none;
+    margin-left: -0.5px;
   }
   @include media.breakpoint(small-mobile) {
     display: contents;
@@ -404,6 +405,7 @@
   color: white;
   border-radius: 4rem;
   margin-left: auto;
+  view-transition-name: submit;
   svg {
     flex-shrink: 0;
     fill: currentColor;
@@ -898,7 +900,7 @@ textarea.finder__text-input {
   border-radius: 7rem;
   flex-shrink: 0;
   color: white;
-
+  view-transition-name: submit;
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: var(--primary-color-hover);
@@ -916,4 +918,176 @@ textarea.finder__text-input {
 
 .finder__select-group:has(.validation-error) .finder__select-btn-label {
   border-color: var(--red);
+}
+
+.finder__find-saved-auto {
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  border-radius: 2.8rem;
+  background: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  box-shadow: 0rem 0.4rem 0.8rem -0.4rem rgba(22, 34, 51, 0.08),
+    0rem 1.6rem 2.4rem 0rem rgba(22, 34, 51, 0.08);
+  padding: 2rem 2.4rem;
+  display: none;
+  // opacity: 0;
+  // visibility: hidden;
+  // transition: opacity 0.4s, visibility 0s linear 0.4s;
+  &.active {
+    display: block;
+  }
+}
+
+.finder__find-saved-auto-wrapper {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr 0.5fr 0.8fr 1.2fr 1fr 0.8fr;
+}
+
+.finder__find-saved-auto-header {
+  margin-bottom: 1.2rem;
+  display: grid;
+  grid-template-columns: subgrid;
+
+  grid-column: 1 / -1;
+}
+
+.finder__find-saved-auto-header-item {
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.8rem;
+  color: #565758;
+  padding: 0 1.6rem;
+}
+
+.finder__find-saved-auto-items {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  background-color: #fff;
+  border-radius: 1.6rem;
+  overflow: clip;
+  padding-right: 0.3rem;
+}
+
+.finder__find-saved-auto-items-scroll-wrapper {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  overflow-x: hidden;
+  max-height: 30rem;
+
+  &::-webkit-scrollbar {
+    background-color: white;
+    width: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e8e8e8;
+    border-radius: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f6f6f6;
+    border-radius: 0.6rem;
+  }
+}
+
+.finder__find-saved-auto-item {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  border-bottom: 1px solid #f6f6f6;
+  align-items: baseline;
+  &:last-child {
+    border: none;
+  }
+}
+
+.finder__find-saved-auto-item-cell {
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2.2rem;
+
+  .finder__find-saved-auto-item--removed & {
+    color: #d1d1d2;
+  }
+}
+
+.finder__find-saved-auto-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.finder__find-saved-auto-apply-btn {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.2rem;
+  color: var(--primary-color);
+}
+
+.finder__find-saved-auto-remove-btn {
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  border-radius: 0.8rem;
+  transition: background-color 0.2s;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: fill 0.2s;
+    fill: #8b8d8e;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: rgba(255, 110, 0, 0.05);
+      svg {
+        fill: var(--primary-color);
+      }
+    }
+  }
+}
+
+.finder__find-saved-auto-return-btn {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 4rem;
+  background: #f6f6f6;
+  transition: color 0.2s, background-color 0.2s;
+  color: var(--text-color);
+
+  svg {
+    fill: currentColor;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-top: 0.1rem;
+  }
 }

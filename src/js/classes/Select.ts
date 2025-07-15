@@ -30,9 +30,8 @@ export default class Select {
     this.init();
   }
 
-  public setValue = (value: string, text: string) => {
+  public setValue = (text: string) => {
     if (!this.searchInput) return;
-
     this.searchInput.value = text;
     this.searchInput.readOnly = true;
     this.rootElement.classList.add("option-selected");
@@ -110,7 +109,7 @@ export default class Select {
     const checked = this.getCheckedOption();
     console.log("Handle option selection", checked);
     if (checked) {
-      this.setValue(checked.value, checked.text);
+      this.setValue(checked.text);
     } else {
       this.clearValue();
     }

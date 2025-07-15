@@ -59,6 +59,7 @@
   background: #2c2d2e;
   color: white;
   flex-shrink: 0;
+  transition: color 0.2s, background-color 0.2s;
 
   &:link,
   &:visited {
@@ -67,8 +68,12 @@
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      .sales__more-link-arrow svg {
-        fill: var(--primary-color);
+      background-color: var(--primary-color);
+      .sales__more-link-arrow {
+        transform: rotate(45deg);
+        svg {
+          fill: var(--primary-color);
+        }
       }
     }
   }
@@ -93,6 +98,7 @@
   height: 2.4rem;
   background-color: #fff;
   border-radius: 50%;
+  transition: transform 0.2s;
   svg {
     width: 1.6rem;
     height: 1.6rem;
