@@ -218,12 +218,6 @@
     &:last-child {
       border-right-color: transparent;
     }
-
-    .product-card {
-      & * {
-        backdrop-filter: none !important;
-      }
-    }
   }
 
   .swiper-backface-hidden .swiper-slide {

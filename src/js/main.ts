@@ -5,7 +5,6 @@ import promo from "./promo";
 import sales from "./sales";
 import header from "./header";
 import productCard from "./productCard";
-import selects from "./selects";
 import finder from "./finder";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   promo();
   sales();
   productCard();
-  selects();
   finder();
 });
 

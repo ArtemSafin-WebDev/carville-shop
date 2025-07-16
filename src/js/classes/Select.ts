@@ -7,6 +7,7 @@ export default class Select {
   protected options: HTMLElement[] = [];
   protected selectType: "single" | "multiple" = "single";
   protected activeTagsList: HTMLElement | null = null;
+  protected activeTags: HTMLElement[] = [];
   protected showMoreTags: HTMLElement | null = null;
   protected mobilePopup: HTMLElement | null = null;
   protected backBtn: HTMLElement | null = null;
@@ -39,12 +40,66 @@ export default class Select {
     this.init();
   }
 
+  protected createPopularOptionsTags() {
+    const popularOptions = this.options.filter((option) =>
+      option.classList.contains("js-select-popular-option")
+    );
+    const tags = popularOptions.map((option) =>
+      this.createTagFromOption(option)
+    );
+    if (!tags.length) return;
+    this.activeTags = tags;
+    this.activeTagsList?.append(...tags);
+  }
+
+  protected prependSelectedTag = () => {
+    const checkedOption = this.getCheckedOption();
+    if (!checkedOption) return;
+    const isTagAlreadyPresent = this.activeTags.some(
+      (tag) =>
+        tag.getAttribute("data-value")?.trim().toLowerCase() ===
+        checkedOption.value.trim().toLowerCase()
+    );
+    if (isTagAlreadyPresent) return;
+    const newTag = this.createTagFromOption(checkedOption.option);
+    this.activeTags.unshift(newTag);
+    this.activeTagsList?.prepend(newTag);
+  };
+
+  protected updateTags() {
+    const checkedOption = this.getCheckedOption();
+    this.activeTags.forEach((tag) => tag.classList.remove("active"));
+    if (!checkedOption) return;
+    const matchingTags = this.activeTags.filter(
+      (tag) =>
+        tag.getAttribute("data-value")?.trim().toLowerCase() ===
+        checkedOption.value.trim().toLowerCase()
+    );
+    matchingTags.forEach((tag) => tag.classList.add("active"));
+  }
+
+  protected createTagFromOption = (option: HTMLElement) => {
+    const value = option.querySelector<HTMLInputElement>(
+      'input[type="radio"]'
+    )!.value;
+    const text = option
+      .querySelector<HTMLElement>(".js-select-option-text")!
+      .textContent!.trim();
+    const tag = document.createElement("div");
+    tag.className = "finder__select-active-tag";
+    tag.textContent = text;
+    tag.setAttribute("data-value", value);
+    return tag;
+  };
+
   public setValue = (text: string) => {
     if (!this.searchInput) return;
     this.searchInput.value = text;
     this.searchInput.readOnly = true;
     this.rootElement.classList.add("option-selected");
     this.handleSearch("");
+    this.prependSelectedTag();
+    this.updateTags();
   };
 
   public clearValue = () => {
@@ -58,6 +113,7 @@ export default class Select {
       if (input) input.checked = false;
     });
     this.handleSearch("");
+    this.updateTags();
   };
 
   public showMobilePopup() {
@@ -100,6 +156,7 @@ export default class Select {
     return {
       value,
       text,
+      option: checkedOption,
     };
   };
 
@@ -126,6 +183,7 @@ export default class Select {
   protected handleOptionSelection = () => {
     const checked = this.getCheckedOption();
     console.log("Handle option selection", checked);
+
     if (checked) {
       this.setValue(checked.text);
     } else {
@@ -211,10 +269,54 @@ export default class Select {
       }
     );
 
+    this.createPopularOptionsTags();
+
+    this.rootElement.addEventListener(
+      "click",
+      (event) => {
+        const target = event.target as HTMLElement;
+        if (
+          target.matches(".finder__select-active-tag") ||
+          target.closest(".finder__select-active-tag")
+        ) {
+          event.preventDefault();
+
+          console.log("ACTIVE TAG CLICK");
+          const activeTag = target.matches(".finder__select-active-tag")
+            ? target
+            : target.closest(".finder__select-active-tag");
+          const value = activeTag?.getAttribute("data-value");
+          const matchingOption = this.options.find((option) => {
+            const input = option.querySelector<HTMLInputElement>(
+              "input[type='radio']"
+            );
+            if (!input) return false;
+            return input.value === value;
+          });
+
+          console.log("MATCHING OPTIOn");
+          if (matchingOption) {
+            const input = matchingOption.querySelector<HTMLInputElement>(
+              "input[type='radio']"
+            );
+            if (input) input.checked = true;
+            console.log("MATCHING OPTION INPUT", input);
+            input?.dispatchEvent(new Event("change"));
+          }
+        }
+      },
+      {
+        signal,
+      }
+    );
+
+    this.rootElement.classList.add("initialized");
+
     return () => {
       this.clearValue();
       this.hideDropdown();
       abortController.abort();
+      this.rootElement.classList.remove("initialized");
     };
   };
 

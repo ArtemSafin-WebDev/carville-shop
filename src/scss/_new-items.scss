@@ -336,12 +336,6 @@
     position: static;
     border-right: 1px solid #efefef;
 
-    .product-card {
-      & * {
-        backdrop-filter: none !important;
-      }
-    }
-
     @include media.breakpointMF(mobile) {
       &:nth-last-child(1 of .new-items__slide) {
         border-right-color: transparent;

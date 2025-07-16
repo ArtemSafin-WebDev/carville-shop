@@ -332,7 +332,6 @@ body:has(.finder.active) {
 }
 
 .finder__select-wrapper {
-  // flex-grow: 1;
   position: relative;
 
   // &--initially-disabled {
@@ -375,47 +374,39 @@ body:has(.finder.active) {
 }
 .finder__select-active-tags {
   display: contents;
+}
 
-  .finder__select-option {
-    width: auto;
-    all: revert;
-    box-sizing: border-box;
-  }
-  .finder__select-option-text {
-    font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem 1.2rem;
-    border-radius: 2.2rem;
-    border: 1px solid #d1d1d2;
-    background: white !important;
-    color: var(--text-color);
-    width: auto;
-    svg {
-      display: none;
-    }
-  }
-  .finder__select-option-input:checked ~ .finder__select-option-text {
+.finder__select-active-tag {
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2.2rem;
+  border: 1px solid #d1d1d2;
+  background: white !important;
+  color: var(--text-color);
+  width: auto;
+  &.active {
     border-color: var(--primary-color);
-  }
-
-  .finder__select-option-checkmark {
-    display: none;
   }
 }
 
 .finder__select-active-wrapper {
   display: none;
   @include media.breakpoint(small-mobile) {
-    display: flex;
+    display: none;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.8rem;
     margin-top: 1.2rem;
+
+    .initialized & {
+      display: flex;
+    }
   }
 }
 
@@ -490,6 +481,20 @@ body:has(.finder.active) {
 
     .finder__select-arrow {
       display: none;
+    }
+  }
+
+  &:not(.initialized) {
+    .finder__select-btn-label {
+      border-color: #e8e8e8;
+    }
+
+    .finder__select-arrow svg {
+      fill: #e8e8e8;
+    }
+
+    .finder__select-btn-label-text {
+      color: #e8e8e8;
     }
   }
 
@@ -580,6 +585,7 @@ body:has(.finder.active) {
   &[disabled] {
     background-color: #f6f6f6;
     color: #d1d1d2;
+    cursor: default;
   }
 
   @media (hover: hover) and (pointer: fine) {

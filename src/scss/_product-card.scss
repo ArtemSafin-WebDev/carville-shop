@@ -131,7 +131,7 @@
   border-radius: 50%;
   border: 1px solid #d1d1d2;
   background: rgba(255, 255, 255, 0.7);
-  // backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   display: grid;
   place-items: center;
   color: transparent;
@@ -166,7 +166,7 @@
     height: 2.8rem;
     border: 1px solid #d1d1d2;
     background: rgba(255, 255, 255, 0.7);
-    // backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 
     svg {
       width: 1.2rem;
@@ -235,7 +235,7 @@
   border-radius: 50%;
   border: 1px solid #d1d1d2;
   background: rgba(255, 255, 255, 0.7);
-  // backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   display: grid;
   place-items: center;
   color: transparent;
@@ -284,7 +284,7 @@
 
     border: 1px solid #d1d1d2;
     background: rgba(255, 255, 255, 0.7);
-    // backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     svg {
       width: 1.2rem;
       height: 1.2rem;
@@ -374,7 +374,7 @@
   border-radius: 50%;
   border: 1px solid #d1d1d2;
   background: rgba(255, 255, 255, 0.7);
-  // backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   display: grid;
   place-items: center;
   transition: border-color 0.2s, color 0.2s;
@@ -394,7 +394,7 @@
   @include media.breakpoint(small-mobile) {
     border: 1px solid #d1d1d2;
     background: rgba(255, 255, 255, 0.7);
-    // backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     width: 2.8rem;
     height: 2.8rem;
 
