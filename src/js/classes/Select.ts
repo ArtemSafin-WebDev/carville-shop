@@ -6,6 +6,7 @@ export default class Select {
   protected destroyFn: (() => void) | null = null;
   protected options: HTMLElement[] = [];
   protected selectType: "single" | "multiple" = "single";
+  protected activeTagsList: HTMLElement | null = null;
 
   constructor(rootElement: HTMLElement) {
     this.rootElement = rootElement;
@@ -20,7 +21,9 @@ export default class Select {
     );
     this.clearBtn =
       rootElement.querySelector<HTMLButtonElement>(".js-select-clear");
-
+    this.activeTagsList = rootElement.querySelector<HTMLElement>(
+      ".js-active-tags-list"
+    );
     if (!this.searchInput || !this.dropdownElement)
       throw new Error("Not all required elements are present");
 

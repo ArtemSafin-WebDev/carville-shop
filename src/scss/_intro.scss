@@ -11,6 +11,7 @@
   @include media.breakpoint(small-mobile) {
     padding-top: 2rem;
     margin-bottom: 6rem;
+    z-index: 65;
   }
 }
 
@@ -22,7 +23,7 @@
 
 .intro__wrapper {
   position: relative;
-  z-index: 1;
+  isolation: isolate;
   padding: 2.4rem;
 
   color: white;

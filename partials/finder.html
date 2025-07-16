@@ -1,5 +1,11 @@
 <div class="finder js-finder">
     <div class="finder__content">
+        <button class="finder__close-btn" type="button">
+            <svg width="14" height="14" aria-hidden="true">
+                <use xlink:href="#back"></use>
+            </svg>
+            Подбор запчастей
+        </button>
         <div class="finder__top">
             <div class="finder__modes">
                 <div class="finder__modes-btns">
@@ -7,13 +13,23 @@
                         <svg width="14" height="14" aria-hidden="true">
                             <use xlink:href="#finder-mode-car"></use>
                         </svg>
-                        Подобрать запчасти по авто
+                        <span class="finder__mode-btn-desktop-text">
+                            Подобрать запчасти по авто
+                        </span>
+                        <span class="finder__mode-btn-mobile-text">
+                            Подбор по авто
+                        </span>
                     </button>
                     <button class="finder__mode-btn js-finder-mode-btn">
                         <svg width="14" height="14" aria-hidden="true">
                             <use xlink:href="#finder-mode-vin"></use>
                         </svg>
-                        Запросить подбор по VIN
+                        <span class="finder__mode-btn-desktop-text">
+                            Запросить подбор по VIN
+                        </span>
+                        <span class="finder__mode-btn-mobile-text">
+                            Подбор по VIN
+                        </span>
                     </button>
                 </div>
             </div>
@@ -43,7 +59,7 @@
                         {{> modification-select }}
                     </div>
                     <div class="finder__submit-btn-wrapper">
-                        <button class="finder__submit-btn js-auto-mode-submit-btn" type="submit">
+                        <button class="finder__submit-btn js-auto-mode-submit-btn" type="submit" disabled="">
                             <svg width="14" height="14" aria-hidden="true">
                                 <use xlink:href="#find"></use>
                             </svg>
@@ -51,7 +67,7 @@
                                 Подобрать
                             </span>
                             <span class="finder__submit-btn-mobile-text">
-                                Показать 1 029 товаров
+                                Подобрать
                             </span>
                         </button>
                     </div>
@@ -66,54 +82,59 @@
                         <div class="finder__find-by-vin-form-field">
                             {{> model-select }}
                         </div>
-                        <div class="finder__find-by-vin-form-field">
-                            <div class="finder__text-input-wrapper">
-                                <label class="finder__text-input-label">
-                                    <input type="text" class="finder__text-input" placeholder="VIN*" name="vin"
-                                        required="" autocomplete="off">
-                                    <span class="finder__text-input-label-text">
-                                        VIN*</span>
-                                </label>
+                        <div class="finder__find-by-vin-form-text-inputs">
+
+
+                            <div class="finder__find-by-vin-form-field">
+                                <div class="finder__text-input-wrapper">
+                                    <label class="finder__text-input-label">
+                                        <input type="text" class="finder__text-input" placeholder="VIN*" name="vin"
+                                            required="" autocomplete="off">
+                                        <span class="finder__text-input-label-text">
+                                            VIN*</span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="finder__find-by-vin-form-field">
-                            <div class="finder__text-input-wrapper">
-                                <label class="finder__text-input-label">
-                                    <input type="text" class="finder__text-input" placeholder="ФИО*" name="name"
-                                        required="" autocomplete="off">
-                                    <span class="finder__text-input-label-text">
-                                        ФИО*</span>
-                                </label>
+                            <div class="finder__find-by-vin-form-field">
+                                <div class="finder__text-input-wrapper">
+                                    <label class="finder__text-input-label">
+                                        <input type="text" class="finder__text-input" placeholder="ФИО*" name="name"
+                                            required="" autocomplete="off">
+                                        <span class="finder__text-input-label-text">
+                                            ФИО*</span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="finder__find-by-vin-form-field">
-                            <div class="finder__text-input-wrapper">
-                                <label class="finder__text-input-label">
-                                    <input type="tel" class="finder__text-input" placeholder="Телефон*" name="phone"
-                                        required="" autocomplete="off">
-                                    <span class="finder__text-input-label-text">
-                                        Телефон*</span>
-                                </label>
+                            <div class="finder__find-by-vin-form-field">
+                                <div class="finder__text-input-wrapper">
+                                    <label class="finder__text-input-label">
+                                        <input type="tel" class="finder__text-input" placeholder="Телефон*" name="phone"
+                                            required="" autocomplete="off">
+                                        <span class="finder__text-input-label-text">
+                                            Телефон*</span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="finder__find-by-vin-form-field">
-                            <div class="finder__text-input-wrapper">
-                                <label class="finder__text-input-label">
-                                    <input type="email" class="finder__text-input" placeholder="Email" name="email"
-                                        autocomplete="off">
-                                    <span class="finder__text-input-label-text">
-                                        Email</span>
-                                </label>
+                            <div class="finder__find-by-vin-form-field">
+                                <div class="finder__text-input-wrapper">
+                                    <label class="finder__text-input-label">
+                                        <input type="email" class="finder__text-input" placeholder="Email" name="email"
+                                            autocomplete="off">
+                                        <span class="finder__text-input-label-text">
+                                            Email</span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="finder__find-by-vin-form-field finder__find-by-vin-form-field--large">
-                            <div class="finder__text-input-wrapper">
-                                <label class="finder__text-input-label finder__text-input-label--stretch">
-                                    <textarea name="comment" class="finder__text-input"
-                                        placeholder="Интересующие запчасти*" autocomplete="off" required=""></textarea>
-                                    <span class="finder__text-input-label-text">
-                                        Интересующие запчасти*</span>
-                                </label>
+                            <div class="finder__find-by-vin-form-field finder__find-by-vin-form-field--large">
+                                <div class="finder__text-input-wrapper">
+                                    <label class="finder__text-input-label finder__text-input-label--stretch">
+                                        <textarea name="comment" class="finder__text-input"
+                                            placeholder="Интересующие запчасти*" autocomplete="off"
+                                            required=""></textarea>
+                                        <span class="finder__text-input-label-text">
+                                            Интересующие запчасти*</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,6 +157,9 @@
                         <button class="finder__find-by-vin-form-submit" type="submit">
                             <svg width="14" height="14" aria-hidden="true">
                                 <use xlink:href="#submit"></use>
+                            </svg>
+                            <svg width="14" height="14" aria-hidden="true">
+                                <use xlink:href="#find"></use>
                             </svg>
                             Отправить запрос
                         </button>
@@ -170,22 +194,22 @@
                     <div class="finder__find-saved-auto-items">
                         <div class="finder__find-saved-auto-items-scroll-wrapper">
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Audi
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     A4 B8 (08-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2015
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     2.0 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     A4 2.0 TFSI quattro 190 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -197,6 +221,9 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
@@ -426,6 +453,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

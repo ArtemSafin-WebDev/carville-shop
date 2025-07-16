@@ -34,7 +34,7 @@
     color: var(--text-color);
     padding: 0 var(--content-padding);
     padding-top: 1.6rem;
-    padding-bottom: 3rem;
+    padding-bottom: 10rem;
     opacity: 1;
     visibility: inherit;
     transition: opacity 0.4s, visibility 0.4s;
@@ -52,6 +52,7 @@
 
   @include media.breakpoint(small-mobile) {
     gap: 0.8rem;
+    margin-bottom: 1.6rem;
   }
 }
 
@@ -76,6 +77,9 @@
     background-image: url("../images/finder-corner.svg");
     pointer-events: none;
     margin-left: -0.5px;
+    @include media.breakpoint(small-mobile) {
+      display: none;
+    }
   }
   @include media.breakpoint(small-mobile) {
     display: contents;
@@ -134,11 +138,23 @@
     font-style: normal;
     font-weight: 600;
     line-height: 1.5rem;
-    padding: 1.2rem 1.6rem;
+    padding: 1.3rem 1.6rem;
     color: #565758;
   }
 }
 
+.finder__mode-btn-desktop-text {
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
+}
+
+.finder__mode-btn-mobile-text {
+  display: none;
+  @include media.breakpoint(small-mobile) {
+    display: block;
+  }
+}
 .finder__my-auto {
   font-size: 1.4rem;
   font-style: normal;
@@ -220,6 +236,8 @@
     color: white;
     border-radius: 50%;
     z-index: 2;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 
@@ -243,6 +261,12 @@
 
   &.active {
     display: block;
+  }
+}
+
+.finder__find-by-vin {
+  @include media.breakpoint(small-mobile) {
+    padding-bottom: 4rem;
   }
 }
 
@@ -298,9 +322,93 @@
 
   @include media.breakpoint(small-mobile) {
     flex-grow: 0;
+    background-color: #fff;
+    border-radius: 1.8rem;
+    padding: 1.6rem;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+
+    &--initially-disabled {
+      .finder__select-title {
+        color: #d1d1d2;
+      }
+      .finder__select-active-wrapper {
+        display: none;
+      }
+    }
+
+    &:has(.option-selected) + .finder__select-wrapper--initially-disabled {
+      .finder__select-title {
+        color: var(--text-color);
+      }
+      .finder__select-active-wrapper {
+        display: block;
+      }
+    }
+  }
+}
+.finder__select-active-tags {
+  display: contents;
+
+  .finder__select-option {
+    width: auto;
+  }
+  .finder__select-option-text {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2.2rem;
+    border: 1px solid #d1d1d2;
+    background: white;
+    color: var(--text-color);
+    width: auto;
+    svg {
+      display: none;
+    }
+  }
+  .finder__select-option-input:checked ~ .finder__select-option-text {
+    border-color: var(--primary-color);
+    background-color: transparent;
   }
 }
 
+.finder__select-active-wrapper {
+  display: none;
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+}
+
+.finder__select-more-tags-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 2.2rem;
+  background-color: var(--primary-color);
+  color: white;
+  padding-top: 0.7rem;
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: white;
+    margin-top: 0.1rem;
+  }
+}
 .finder__select {
   position: relative;
 
@@ -350,7 +458,7 @@
     height: auto;
     padding: 2rem;
     padding-top: 1.2rem;
-    padding-bottom: 2.4rem;
+    padding-bottom: 1.6rem;
     border-radius: 2rem 2rem 0rem 0rem;
     background: white;
     box-shadow: 0rem -0.4rem 2.4rem 0rem rgba(0, 0, 0, 0.1);
@@ -414,13 +522,18 @@
     transition: transform 0.2s;
   }
 
+  &[disabled] {
+    background-color: #f6f6f6;
+    color: #d1d1d2;
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    &:hover {
+    &:not([disabled]):hover {
       background-color: var(--primary-color-hover);
     }
   }
 
-  &:active {
+  &:not([disabled]):active {
     background-color: var(--primary-color-pressed);
   }
 
@@ -435,6 +548,7 @@
     line-height: 1.6rem;
     padding: 1.2rem 3.6rem;
     text-align: center;
+    margin: 0;
   }
 }
 
@@ -545,6 +659,17 @@
 
 .finder__select-title {
   display: none;
+  @include media.breakpoint(small-mobile) {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.8rem;
+
+    display: block;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .finder__form {
@@ -563,10 +688,22 @@
   z-index: 50;
   transition: opacity 0.4s, visibility 0s linear 0.4s;
 
+  @include media.breakpoint(small-mobile) {
+    display: none;
+    opacity: 1;
+    visibility: inherit;
+    transition: none;
+  }
+
   &.active {
     opacity: 1;
     visibility: inherit;
     transition: opacity 0.4s, visibility 0.4s;
+
+    @include media.breakpoint(small-mobile) {
+      display: block;
+      transition: none;
+    }
   }
 }
 
@@ -610,6 +747,9 @@
 
 .finder__mobile-popup {
   display: contents;
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .finder__mobile-popup-inner {
@@ -712,6 +852,26 @@
   grid-auto-flow: dense;
   grid-gap: 0.8rem;
   grid-row-gap: 1.6rem;
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+}
+
+.finder__find-by-vin-form-text-inputs {
+  display: contents;
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 3rem;
+    background: white;
+    padding: 1.6rem;
+  }
 }
 
 .finder__find-by-vin-form-field {
@@ -754,6 +914,7 @@
   transition: background-color 0.2s, color 0.2s;
   height: 4.8rem;
   display: block;
+
   &::placeholder {
     color: #b2b4b3;
   }
@@ -772,6 +933,10 @@ textarea.finder__text-input {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   flex-grow: 1;
+
+  @include media.breakpoint(small-mobile) {
+    height: 16rem;
+  }
 
   & ~ .finder__text-input-label-text {
     top: 2.5rem;
@@ -813,9 +978,33 @@ textarea.finder__text-input {
   gap: 2rem;
   justify-content: space-between;
   margin-top: 0.8rem;
+
+  @include media.breakpoint(small-mobile) {
+    margin: 0;
+    align-items: stretch;
+    gap: 1rem;
+    justify-content: flex-start;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.6rem;
+    border-radius: 2rem 2rem 0rem 0rem;
+    background: white;
+    box-shadow: 0rem -0.4rem 2.4rem 0rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .finder__find-by-vin-form-policy-wrapper {
+  @include media.breakpoint(small-mobile) {
+    order: 2;
+  }
   .validation-error {
     display: none;
   }
@@ -833,6 +1022,10 @@ textarea.finder__text-input {
   gap: 1rem;
   cursor: pointer;
   user-select: none;
+  @include media.breakpoint(small-mobile) {
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
 }
 
 .finder__find-by-vin-form-policy-input {
@@ -901,6 +1094,14 @@ textarea.finder__text-input {
   flex-shrink: 0;
   color: white;
   view-transition-name: submit;
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    &:nth-child(2) {
+      display: none;
+    }
+  }
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: var(--primary-color-hover);
@@ -909,6 +1110,29 @@ textarea.finder__text-input {
 
   &:active {
     background-color: var(--primary-color-pressed);
+  }
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6rem;
+    padding: 1.2rem 3.6rem;
+    text-align: center;
+    margin: 0;
+
+    svg {
+      &:nth-child(1) {
+        display: none;
+      }
+      &:nth-child(2) {
+        display: block;
+      }
+    }
   }
 }
 
@@ -1067,6 +1291,10 @@ textarea.finder__text-input {
   }
 }
 
+.finder__find-saved-auto-remove-btn-text {
+  display: none;
+}
+
 .finder__find-saved-auto-return-btn {
   flex-grow: 1;
   display: flex;
@@ -1089,5 +1317,27 @@ textarea.finder__text-input {
     width: 1.2rem;
     height: 1.2rem;
     margin-top: 0.1rem;
+  }
+}
+
+.finder__close-btn {
+  display: none;
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.2rem;
+    text-transform: uppercase;
+    gap: 0.8rem;
+    margin-bottom: 1.7rem;
+    svg {
+      fill: currentColor;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-top: 0.1rem;
+    }
   }
 }
