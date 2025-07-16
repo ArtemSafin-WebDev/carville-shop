@@ -281,7 +281,6 @@ export default class Select {
         ) {
           event.preventDefault();
 
-          console.log("ACTIVE TAG CLICK");
           const activeTag = target.matches(".finder__select-active-tag")
             ? target
             : target.closest(".finder__select-active-tag");
@@ -294,13 +293,11 @@ export default class Select {
             return input.value === value;
           });
 
-          console.log("MATCHING OPTIOn");
           if (matchingOption) {
             const input = matchingOption.querySelector<HTMLInputElement>(
               "input[type='radio']"
             );
             if (input) input.checked = true;
-            console.log("MATCHING OPTION INPUT", input);
             input?.dispatchEvent(new Event("change"));
           }
         }
@@ -309,6 +306,9 @@ export default class Select {
         signal,
       }
     );
+
+    const initiallyChecked = this.getCheckedOption();
+    if (initiallyChecked) this.setValue(initiallyChecked.text);
 
     this.rootElement.classList.add("initialized");
 
