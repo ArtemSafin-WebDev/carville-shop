@@ -1,6 +1,6 @@
 <div class="finder js-finder">
     <div class="finder__content">
-        <button class="finder__close-btn" type="button">
+        <button class="finder__close-btn js-finder-close-btn" type="button">
             <svg width="14" height="14" aria-hidden="true">
                 <use xlink:href="#back"></use>
             </svg>
@@ -83,8 +83,6 @@
                             {{> model-select }}
                         </div>
                         <div class="finder__find-by-vin-form-text-inputs">
-
-
                             <div class="finder__find-by-vin-form-field">
                                 <div class="finder__text-input-wrapper">
                                     <label class="finder__text-input-label">
@@ -167,6 +165,12 @@
                 </form>
             </div>
             <div class="finder__find-saved-auto js-saved-auto-dropdown">
+                <button class="finder__find-saved-auto-back-btn js-saved-auto-back-btn" type="button">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#back"></use>
+                    </svg>
+                    Мои авто
+                </button>
                 <div class="finder__find-saved-auto-wrapper">
                     <div class="finder__find-saved-auto-header">
                         <div class="finder__find-saved-auto-header-item">
@@ -229,22 +233,22 @@
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Volkswagen
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     Golf VII (12-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2020
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     1.4 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     Golf 1.4 TSI 125 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -256,27 +260,30 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item finder__find-saved-auto-item--removed">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Mercedes-Benz
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     C-Class W205 (14-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2018
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     1.5 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     A4 2.0 TFSI quattro 190 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -291,22 +298,22 @@
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     BMW
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     3 Series G20 (18-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2020
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     2.0 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     320i M Sport 184 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -318,27 +325,30 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Audi
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     A4 B8 (08-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2015
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     2.0 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     A4 2.0 TFSI quattro 190 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -350,27 +360,30 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Volkswagen
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     Golf VII (12-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2020
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     1.4 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     Golf 1.4 TSI 125 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -382,27 +395,30 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item finder__find-saved-auto-item--removed">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     Mercedes-Benz
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     C-Class W205 (14-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2018
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     1.5 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     A4 2.0 TFSI quattro 190 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -417,22 +433,22 @@
                                 </div>
                             </div>
                             <div class="finder__find-saved-auto-item">
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Марка">
                                     BMW
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модель">
                                     3 Series G20 (18-)
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Год">
                                     2020
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Объём двигателя">
                                     2.0 бензиновый
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="Модификация">
                                     320i M Sport 184 л.с.
                                 </div>
-                                <div class="finder__find-saved-auto-item-cell">
+                                <div class="finder__find-saved-auto-item-cell" data-title="VIN">
                                     1234567890ABCDEFG
                                 </div>
                                 <div class="finder__find-saved-auto-item-cell">
@@ -444,6 +460,9 @@
                                             <svg width="14" height="14" aria-hidden="true">
                                                 <use xlink:href="#trash"></use>
                                             </svg>
+                                            <span class="finder__find-saved-auto-remove-btn-text">
+                                                Удалить
+                                            </span>
                                         </button>
                                     </div>
                                 </div>

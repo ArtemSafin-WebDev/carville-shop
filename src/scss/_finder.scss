@@ -185,13 +185,15 @@
     }
   }
 
-  &.active {
-    background-color: var(--primary-color);
-    color: white;
+  @include media.breakpointMF(mobile) {
+    &.active {
+      background-color: var(--primary-color);
+      color: white;
 
-    svg {
-      &:last-child {
-        display: block;
+      svg {
+        &:last-child {
+          display: block;
+        }
       }
     }
   }
@@ -1159,17 +1161,45 @@ textarea.finder__text-input {
     0rem 1.6rem 2.4rem 0rem rgba(22, 34, 51, 0.08);
   padding: 2rem 2.4rem;
   display: none;
-  // opacity: 0;
-  // visibility: hidden;
-  // transition: opacity 0.4s, visibility 0s linear 0.4s;
+
   &.active {
     display: block;
+  }
+
+  @include media.breakpoint(small-mobile) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior-y: contain;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+
+    color: var(--text-color);
+    padding: 0 var(--content-padding);
+    padding-top: 1.6rem;
+    padding-bottom: 2.4rem;
+    display: none;
+    backdrop-filter: none;
+    &.active {
+      display: block;
+    }
   }
 }
 
 .finder__find-saved-auto-wrapper {
   display: grid;
   grid-template-columns: 0.85fr 1fr 0.5fr 0.8fr 1.2fr 1fr 0.8fr;
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .finder__find-saved-auto-header {
@@ -1178,6 +1208,10 @@ textarea.finder__text-input {
   grid-template-columns: subgrid;
 
   grid-column: 1 / -1;
+
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .finder__find-saved-auto-header-item {
@@ -1197,6 +1231,16 @@ textarea.finder__text-input {
   border-radius: 1.6rem;
   overflow: clip;
   padding-right: 0.3rem;
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    gap: 0.8rem;
+  }
 }
 
 .finder__find-saved-auto-items-scroll-wrapper {
@@ -1224,6 +1268,13 @@ textarea.finder__text-input {
     background-color: #f6f6f6;
     border-radius: 0.6rem;
   }
+
+  @include media.breakpoint(small-mobile) {
+    all: revert;
+    box-sizing: border-box;
+    display: block;
+    display: contents;
+  }
 }
 
 .finder__find-saved-auto-item {
@@ -1234,6 +1285,17 @@ textarea.finder__text-input {
   align-items: baseline;
   &:last-child {
     border: none;
+  }
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem;
+    border-radius: 2rem;
+    background: white;
+    border: none;
+    gap: 1.2rem;
+    align-items: stretch;
   }
 }
 
@@ -1247,6 +1309,39 @@ textarea.finder__text-input {
   .finder__find-saved-auto-item--removed & {
     color: #d1d1d2;
   }
+
+  @include media.breakpoint(small-mobile) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.8rem;
+    padding: 0;
+
+    &::before {
+      content: attr(data-title);
+      font-size: 1.4rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.8rem;
+      color: #565758;
+    }
+
+    .finder__find-saved-auto-item--removed & {
+      &::before {
+        color: #d1d1d2;
+      }
+    }
+
+    &:last-child {
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 
 .finder__find-saved-auto-actions {
@@ -1254,6 +1349,14 @@ textarea.finder__text-input {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+
+  @include media.breakpoint(small-mobile) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 1.2rem;
+    margin-top: 1.2rem;
+    width: 100%;
+  }
 }
 
 .finder__find-saved-auto-apply-btn {
@@ -1262,6 +1365,21 @@ textarea.finder__text-input {
   font-weight: 700;
   line-height: 2.2rem;
   color: var(--primary-color);
+
+  @include media.breakpoint(small-mobile) {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6rem;
+    order: 10;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    justify-content: center;
+    border-radius: 4rem;
+  }
 }
 
 .finder__find-saved-auto-remove-btn {
@@ -1289,10 +1407,34 @@ textarea.finder__text-input {
       }
     }
   }
+
+  @include media.breakpoint(small-mobile) {
+    margin: 0;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6rem;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid #d1d1d2;
+    background-color: transparent;
+    color: var(--text-color);
+    text-align: center;
+    justify-content: center;
+    border-radius: 4rem;
+    width: auto;
+    height: auto;
+
+    svg {
+      display: none;
+    }
+  }
 }
 
 .finder__find-saved-auto-remove-btn-text {
   display: none;
+  @include media.breakpoint(small-mobile) {
+    display: block;
+  }
 }
 
 .finder__find-saved-auto-return-btn {
@@ -1318,6 +1460,30 @@ textarea.finder__text-input {
     height: 1.2rem;
     margin-top: 0.1rem;
   }
+
+  @include media.breakpoint(small-mobile) {
+    margin: 0;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.6rem;
+    order: 10;
+    padding: 1.2rem 2.4rem;
+    border: 1px solid #f6f6f6;
+    background-color: #f6f6f6;
+    color: var(--text-color);
+    text-align: center;
+    justify-content: center;
+    border-radius: 4rem;
+    width: auto;
+    height: auto;
+    grid-column: 1 / -1;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
 }
 
 .finder__close-btn {
@@ -1338,6 +1504,27 @@ textarea.finder__text-input {
       width: 2.4rem;
       height: 2.4rem;
       margin-top: 0.1rem;
+    }
+  }
+}
+
+.finder__find-saved-auto-back-btn {
+  display: none;
+  @include media.breakpoint(small-mobile) {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.2rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+    svg {
+      flex-shrink: 0;
+      width: 2.4rem;
+      height: 2.4rem;
+      fill: currentColor;
     }
   }
 }

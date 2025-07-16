@@ -20,6 +20,8 @@ export default class Finder {
   protected showMyAutoBtn: HTMLButtonElement | null = null;
   protected myAutoShown: boolean = false;
   protected myAutoDropdown: HTMLElement | null = null;
+  protected savedAutoBackBtn: HTMLElement | null = null;
+  protected finderCloseBtn: HTMLElement | null = null;
 
   constructor(protected rootElement: HTMLElement) {
     this.modeBtns = Array.from(
@@ -41,6 +43,12 @@ export default class Finder {
       ".js-saved-auto-dropdown"
     );
     this.showMyAutoBtn = this.rootElement.querySelector(".js-show-my-auto-btn");
+    this.savedAutoBackBtn = this.rootElement.querySelector(
+      ".js-saved-auto-back-btn"
+    );
+    this.finderCloseBtn = this.rootElement.querySelector(
+      ".js-finder-close-btn"
+    );
     if (this.vinModeForm)
       this.vinModeFormValidator = new Validator(this.vinModeForm);
 
@@ -135,6 +143,28 @@ export default class Finder {
         } else {
           this.showMyAuto();
         }
+      },
+      {
+        signal,
+      }
+    );
+
+    this.savedAutoBackBtn?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.hideMyAuto();
+      },
+      {
+        signal,
+      }
+    );
+
+    this.finderCloseBtn?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.closeMobileFinderPopup();
       },
       {
         signal,
