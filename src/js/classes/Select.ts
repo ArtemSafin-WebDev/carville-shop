@@ -7,6 +7,9 @@ export default class Select {
   protected options: HTMLElement[] = [];
   protected selectType: "single" | "multiple" = "single";
   protected activeTagsList: HTMLElement | null = null;
+  protected showMoreTags: HTMLElement | null = null;
+  protected mobilePopup: HTMLElement | null = null;
+  protected backBtn: HTMLElement | null = null;
 
   constructor(rootElement: HTMLElement) {
     this.rootElement = rootElement;
@@ -24,6 +27,9 @@ export default class Select {
     this.activeTagsList = rootElement.querySelector<HTMLElement>(
       ".js-active-tags-list"
     );
+    this.mobilePopup = rootElement.querySelector(".js-mobile-popup");
+    this.backBtn = rootElement.querySelector(".js-back-btn");
+    this.showMoreTags = this.rootElement.querySelector(".js-show-more-tags");
     if (!this.searchInput || !this.dropdownElement)
       throw new Error("Not all required elements are present");
 
@@ -53,6 +59,15 @@ export default class Select {
     });
     this.handleSearch("");
   };
+
+  public showMobilePopup() {
+    this.mobilePopup?.classList.add("active");
+    this.searchInput?.focus();
+  }
+
+  public hideMobilePopup() {
+    this.mobilePopup?.classList.remove("active");
+  }
 
   public showDropdown = () => {
     this.dropdownElement?.classList.add("active");
@@ -168,6 +183,28 @@ export default class Select {
       (event) => {
         event.preventDefault();
         this.clearValue();
+      },
+      {
+        signal,
+      }
+    );
+
+    this.showMoreTags?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.showMobilePopup();
+      },
+      {
+        signal,
+      }
+    );
+
+    this.backBtn?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.hideMobilePopup();
       },
       {
         signal,
