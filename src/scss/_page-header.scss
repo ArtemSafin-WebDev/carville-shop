@@ -5,7 +5,6 @@
   @include utils.blockWrapper;
 
   @include media.breakpoint(small-mobile) {
-    display: none;
   }
 }
 
@@ -21,6 +20,9 @@
   align-items: center;
   gap: 2rem;
   justify-content: space-between;
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .page-header__nav-list {
@@ -81,6 +83,11 @@
   padding: 1.2rem 0;
   position: relative;
   z-index: 40;
+  @include media.breakpoint(small-mobile) {
+    padding: 1.6rem 0;
+    z-index: 70;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -93,6 +100,9 @@
     background: linear-gradient(0deg, rgba(246, 246, 246, 0) 0%, #fff 100%);
     transition: opacity 0.2s;
     opacity: 0;
+    @include media.breakpoint(small-mobile) {
+      display: none;
+    }
   }
 
   .header-fixed & {
@@ -112,7 +122,13 @@
   transition: box-shadow 0.2s;
 
   .header-fixed & {
-    box-shadow: 0px 10.49px 20px 8.392px rgba(56, 28, 12, 0.05);
+    box-shadow: 0rem 1.049rem 2rem 0.8392rem rgba(56, 28, 12, 0.05);
+  }
+
+  @include media.breakpoint(small-mobile) {
+    padding: 0.8rem;
+    border-radius: 3rem;
+    gap: 1.2rem;
   }
 }
 
@@ -121,6 +137,10 @@
 
   width: 13.5rem;
   margin-right: 3rem;
+  @include media.breakpoint(small-mobile) {
+    margin: 0;
+    width: 12rem;
+  }
 }
 
 .page-header__logo-image {
@@ -132,6 +152,10 @@
 .page-header__catalog {
   position: relative;
   flex-shrink: 0;
+
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .page-header__catalog-button {
@@ -173,6 +197,11 @@
 .page-header__search {
   width: 81rem;
   margin-right: auto;
+  @include media.breakpoint(small-mobile) {
+    width: 20%;
+    flex-grow: 1;
+    margin: 0;
+  }
 }
 
 .page-header__search-input-wrapper {
@@ -193,6 +222,7 @@
   font-weight: 500;
   line-height: 1.8rem;
   color: var(--text-color);
+  text-overflow: ellipsis;
 
   &::placeholder {
     color: #b2b4b3;
@@ -233,6 +263,9 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  @include media.breakpoint(small-mobile) {
+    display: none;
+  }
 }
 
 .page-header__link {

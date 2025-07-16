@@ -29,15 +29,28 @@
     flex-direction: column;
     transition: opacity 0.4s, visibility 0s linear 0.4s;
     background-color: var(--bg-color);
-    opacity: 0;
-    visibility: hidden;
     color: var(--text-color);
     padding: 0 var(--content-padding);
     padding-top: 1.6rem;
     padding-bottom: 10rem;
-    opacity: 1;
-    visibility: inherit;
-    transition: opacity 0.4s, visibility 0.4s;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0s linear 0.4s;
+
+    &.active {
+      opacity: 1;
+      visibility: inherit;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+  }
+}
+
+body:has(.finder.active) {
+  @include media.breakpoint(small-mobile) {
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overflow: hidden;
+    overscroll-behavior: none;
   }
 }
 
