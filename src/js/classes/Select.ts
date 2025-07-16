@@ -112,6 +112,7 @@ export default class Select {
       const input = option.querySelector<HTMLInputElement>("input");
       if (input) input.checked = false;
     });
+
     this.handleSearch("");
     this.updateTags();
   };
@@ -315,6 +316,7 @@ export default class Select {
     return () => {
       this.clearValue();
       this.hideDropdown();
+      this.activeTags.forEach((tag) => tag.remove());
       abortController.abort();
       this.rootElement.classList.remove("initialized");
     };

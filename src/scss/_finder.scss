@@ -333,43 +333,26 @@ body:has(.finder.active) {
 
 .finder__select-wrapper {
   position: relative;
+  &:not(.initialized) {
+    .finder__select-btn-label {
+      border-color: #e8e8e8;
+    }
 
-  // &--initially-disabled {
-  //   .finder__select-btn-label {
-  //     border-color: #e8e8e8;
-  //     pointer-events: none;
-  //   }
+    .finder__select-arrow svg {
+      fill: #e8e8e8;
+    }
 
-  //   .finder__select-arrow svg {
-  //     fill: #e8e8e8;
-  //   }
-  // }
-
+    .finder__select-btn-label-text {
+      color: #e8e8e8;
+    }
+  }
+  &:has(.validation-error) .finder__select-btn-label {
+    border-color: var(--red);
+  }
   @include media.breakpoint(small-mobile) {
-    flex-grow: 0;
-    background-color: #fff;
-    border-radius: 1.8rem;
-    padding: 1.6rem;
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
-
-    // &--initially-disabled {
-    //   .finder__select-title {
-    //     color: #d1d1d2;
-    //   }
-    //   .finder__select-active-wrapper {
-    //     display: none;
-    //   }
-    // }
-
-    // &:has(.option-selected) + .finder__select-wrapper--initially-disabled {
-    //   .finder__select-title {
-    //     color: var(--text-color);
-    //   }
-    //   .finder__select-active-wrapper {
-    //     display: block;
-    //   }
-    // }
+    &:has(.validation-error) .finder__select {
+      border-color: var(--red);
+    }
   }
 }
 .finder__select-active-tags {
@@ -484,22 +467,17 @@ body:has(.finder.active) {
     }
   }
 
-  &:not(.initialized) {
-    .finder__select-btn-label {
-      border-color: #e8e8e8;
-    }
-
-    .finder__select-arrow svg {
-      fill: #e8e8e8;
-    }
-
-    .finder__select-btn-label-text {
-      color: #e8e8e8;
-    }
-  }
-
   @include media.breakpoint(small-mobile) {
+    flex-grow: 0;
+    background-color: #fff;
+    border-radius: 1.8rem;
+    padding: 1.6rem;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
     width: auto;
+    transition: border-color 0.2s;
+
+    border: 1px solid white;
   }
 }
 
@@ -899,9 +877,22 @@ body:has(.finder.active) {
 }
 
 .finder__select-option {
-  display: block;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  padding: 0.8rem 1.6rem;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.4rem;
   cursor: pointer;
-  width: 100%;
+
+  &:has(.finder__select-option-input:checked) {
+    background-color: rgba(255, 110, 0, 0.05);
+    cursor: default;
+  }
 
   &.hidden {
     display: none;
@@ -918,32 +909,26 @@ body:has(.finder.active) {
     line-height: 2.2rem;
     padding: 0.8rem 1.2rem;
     border-radius: 1.2rem;
-    &:has(.finder__select-option-input:checked) {
-      background-color: rgba(255, 110, 0, 0.05);
-    }
   }
 }
 
 .finder__select-option-checkmark {
-  display: none;
-
-  @include media.breakpoint(small-mobile) {
+  display: block;
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: opacity 0.2s;
+  opacity: 0;
+  margin-top: 0.2rem;
+  svg {
     display: block;
-    flex-shrink: 0;
-    width: 1.6rem;
-    height: 1.6rem;
-    transition: opacity 0.2s;
-    opacity: 0;
-    svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      fill: var(--primary-color);
-    }
+    width: 100%;
+    height: 100%;
+    fill: var(--primary-color);
+  }
 
-    .finder__select-option-input:checked ~ & {
-      opacity: 1;
-    }
+  .finder__select-option-input:checked ~ & {
+    opacity: 1;
   }
 }
 .finder__select-option-input {
@@ -951,24 +936,6 @@ body:has(.finder.active) {
 }
 
 .finder__select-option-text {
-  font-size: 1.4rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.8rem;
-  padding: 0.8rem 1.6rem;
-  transition: background-color 0.2s;
-  display: block;
-
-  @include media.breakpointMF(mobile) {
-    .finder__select-option-input:checked ~ & {
-      background-color: rgba(255, 110, 0, 0.05);
-    }
-  }
-
-  @include media.breakpoint(small-mobile) {
-    all: revert;
-    box-sizing: border-box;
-  }
 }
 
 .finder__options-not-found {
@@ -1298,10 +1265,6 @@ textarea.finder__text-input {
 
 .finder__select-group-inner {
   position: relative;
-}
-
-.finder__select-group:has(.validation-error) .finder__select-btn-label {
-  border-color: var(--red);
 }
 
 .finder__find-saved-auto {
