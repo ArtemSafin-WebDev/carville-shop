@@ -11,6 +11,11 @@ export default class Select {
   protected showMoreTags: HTMLElement | null = null;
   protected mobilePopup: HTMLElement | null = null;
   protected backBtn: HTMLElement | null = null;
+  protected selectedCount: HTMLElement | null = null;
+  protected selectedItemsWrapper: HTMLElement | null = null;
+  protected multiselectReset: HTMLElement | null = null;
+  protected multiselectShowAll: HTMLElement | null = null;
+  protected selectAllBtn: HTMLButtonElement | null = null;
 
   constructor(rootElement: HTMLElement) {
     this.rootElement = rootElement;
@@ -28,17 +33,48 @@ export default class Select {
     this.activeTagsList = rootElement.querySelector<HTMLElement>(
       ".js-active-tags-list"
     );
+    this.selectedCount = rootElement.querySelector(".js-select-count");
     this.mobilePopup = rootElement.querySelector(".js-mobile-popup");
     this.backBtn = rootElement.querySelector(".js-back-btn");
     this.showMoreTags = this.rootElement.querySelector(".js-show-more-tags");
+    this.selectedItemsWrapper = this.rootElement.querySelector(
+      ".js-multiselect-selected-items"
+    );
+    this.multiselectReset = this.rootElement.querySelector(
+      ".js-multiselect-reset"
+    );
+    this.multiselectShowAll = this.rootElement.querySelector(
+      ".js-multiselect-show-all"
+    );
+    this.selectAllBtn = this.rootElement.querySelector(".js-select-all-btn");
     if (!this.searchInput || !this.dropdownElement)
       throw new Error("Not all required elements are present");
 
     if (this.options[0].querySelector("input")?.type === "checkbox") {
       this.selectType = "multiple";
+      this.rootElement.classList.add("multiselect");
     }
     this.init();
   }
+
+  public selectAll = () => {
+    if (!this.searchInput) return;
+
+    this.options.forEach((option) => {
+      const input = option.querySelector<HTMLInputElement>("input");
+      if (!input) return;
+      input.checked = true;
+    });
+    this.setValues();
+  };
+
+  public deselectAll = () => {
+    this.clearValues();
+  };
+
+  protected hasAllSelected = () => {
+    return this.getCheckedOptions().length === this.options.length;
+  };
 
   protected createPopularOptionsTags() {
     const popularOptions = this.options.filter((option) =>
@@ -80,7 +116,7 @@ export default class Select {
 
   protected createTagFromOption = (option: HTMLElement) => {
     const value = option.querySelector<HTMLInputElement>(
-      'input[type="radio"]'
+      'input[type="radio"], input[type="checkbox"]'
     )!.value;
     const text = option
       .querySelector<HTMLElement>(".js-select-option-text")!
@@ -92,12 +128,67 @@ export default class Select {
     return tag;
   };
 
-  public setValue = (text: string) => {
+  protected addSelectedItemsTags = () => {
+    if (!this.selectedItemsWrapper) return;
+    this.selectedItemsWrapper.innerHTML = "";
+    const options = this.getCheckedOptions();
+    const tags = options.map((option) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className =
+        "finder__select-multiselect-selected-item js-selected-item";
+      btn.innerHTML = `
+        ${option.text}
+        <svg width="14" height="14" aria-hidden="true">
+          <use xlink:href="#clear"></use>
+        </svg>
+      `;
+      btn.setAttribute("data-value", option.value);
+      return btn;
+    });
+    this.selectedItemsWrapper?.append(...tags);
+  };
+
+  protected toggleAllSelectedItemsShown = () => {
+    this.selectedItemsWrapper?.classList.toggle("all-selected-shown");
+  };
+
+  public setValues = () => {
     if (!this.searchInput) return;
-    this.searchInput.value = text;
+    let options = this.getCheckedOptions();
+    if (!options.length) return;
+    if (this.hasAllSelected()) {
+      this.searchInput.value = "Все группы товаров";
+    } else {
+      const searchInputString = options.map((option) => option.text).join(", ");
+      this.searchInput.value = searchInputString;
+    }
+
     this.searchInput.readOnly = true;
     this.rootElement.classList.add("option-selected");
+    if (this.selectedCount)
+      this.selectedCount.textContent = options.length.toString();
     this.handleSearch("");
+    this.addSelectedItemsTags();
+    this.prependSelectedTag();
+    this.updateTags();
+    if (this.hasAllSelected()) {
+      this.selectAllBtn?.classList.add("active");
+    } else {
+      this.selectAllBtn?.classList.remove("active");
+    }
+  };
+
+  public setValue = () => {
+    if (!this.searchInput) return;
+    const option = this.getCheckedOption();
+    if (!option) return;
+    this.searchInput.value = option.text;
+    this.searchInput.readOnly = true;
+    this.rootElement.classList.add("option-selected");
+
+    this.handleSearch("");
+
     this.prependSelectedTag();
     this.updateTags();
   };
@@ -114,6 +205,22 @@ export default class Select {
     });
 
     this.handleSearch("");
+    this.updateTags();
+  };
+
+  public clearValues = () => {
+    if (!this.searchInput) return;
+
+    this.searchInput.value = "";
+    this.searchInput.readOnly = false;
+    this.rootElement.classList.remove("option-selected");
+    this.options.forEach((option) => {
+      const input = option.querySelector<HTMLInputElement>("input");
+      if (input) input.checked = false;
+    });
+    this.selectAllBtn?.classList.remove("active");
+    this.handleSearch("");
+    this.addSelectedItemsTags();
     this.updateTags();
   };
 
@@ -150,15 +257,35 @@ export default class Select {
       .querySelector<HTMLElement>(".js-select-option-text")!
       .textContent!.trim();
 
-    console.log(
-      "Checked option text element",
-      checkedOption.querySelector<HTMLElement>(".js-select-option-text")
-    );
     return {
       value,
       text,
       option: checkedOption,
     };
+  };
+
+  private getCheckedOptions = () => {
+    const checkedOptions = this.options.filter((option) => {
+      const optionInput = option.querySelector<HTMLInputElement>(
+        'input[type="checkbox"]'
+      );
+      if (optionInput?.checked) return true;
+      return false;
+    });
+    if (!checkedOptions.length) return [];
+    return checkedOptions.map((option) => {
+      const value = option.querySelector<HTMLInputElement>(
+        'input[type="checkbox"]'
+      )!.value;
+      const text = option
+        .querySelector<HTMLElement>(".js-select-option-text")!
+        .textContent!.trim();
+      return {
+        value,
+        text,
+        option,
+      };
+    });
   };
 
   protected handleSearch = (query: string) => {
@@ -182,15 +309,25 @@ export default class Select {
   };
 
   protected handleOptionSelection = () => {
-    const checked = this.getCheckedOption();
-    console.log("Handle option selection", checked);
-
-    if (checked) {
-      this.setValue(checked.text);
+    if (this.selectType === "single") {
+      const checked = this.getCheckedOption();
+      if (checked) {
+        this.setValue();
+      } else {
+        this.clearValue();
+      }
     } else {
-      this.clearValue();
+      const checked = this.getCheckedOptions();
+      if (checked.length) {
+        this.setValues();
+      } else {
+        this.clearValues();
+      }
     }
-    this.hideDropdown();
+    if (this.selectType === "single") {
+      console.log("CLOSING DROPDOWN 3");
+      this.hideDropdown();
+    }
   };
 
   private init = () => {
@@ -212,6 +349,14 @@ export default class Select {
       (event) => {
         const target = event.target as HTMLElement;
         if (this.rootElement.contains(target)) return;
+        if (
+          target.matches(".js-selected-item") ||
+          target.closest(".js-selected-item")
+        )
+          return;
+
+        if (this.selectType === "multiple")
+          console.log("CLOSING DROPDOWN 1", target, this.rootElement);
         this.hideDropdown();
       },
       {
@@ -241,7 +386,14 @@ export default class Select {
       "click",
       (event) => {
         event.preventDefault();
-        this.clearValue();
+        if (this.selectType === "single") {
+          this.clearValue();
+        } else {
+          this.clearValues();
+
+          console.log("CLOSING DROPDOWN 2");
+          this.hideDropdown();
+        }
       },
       {
         signal,
@@ -287,17 +439,14 @@ export default class Select {
             : target.closest(".finder__select-active-tag");
           const value = activeTag?.getAttribute("data-value");
           const matchingOption = this.options.find((option) => {
-            const input = option.querySelector<HTMLInputElement>(
-              "input[type='radio']"
-            );
+            const input = option.querySelector<HTMLInputElement>("input");
             if (!input) return false;
             return input.value === value;
           });
 
           if (matchingOption) {
-            const input = matchingOption.querySelector<HTMLInputElement>(
-              "input[type='radio']"
-            );
+            const input =
+              matchingOption.querySelector<HTMLInputElement>("input");
             if (input) input.checked = true;
             input?.dispatchEvent(new Event("change"));
           }
@@ -308,16 +457,85 @@ export default class Select {
       }
     );
 
-    const initiallyChecked = this.getCheckedOption();
-    if (initiallyChecked) this.setValue(initiallyChecked.text);
+    this.rootElement.addEventListener(
+      "click",
+      (event) => {
+        const target = event.target as HTMLElement;
+        if (
+          target.matches(".js-selected-item") ||
+          target.closest(".js-selected-item")
+        ) {
+          event.preventDefault();
+          const button = target.matches(".js-selected-item")
+            ? target
+            : target.closest(".js-selected-item");
+          if (!button) return;
+          const value = button.getAttribute("data-value");
+
+          const matchingOption = this.options.find((option) => {
+            const input = option.querySelector<HTMLInputElement>("input");
+            if (!input) return false;
+            return input.value === value;
+          });
+
+          if (matchingOption) {
+            const input =
+              matchingOption.querySelector<HTMLInputElement>("input");
+            if (input) input.checked = false;
+            input?.dispatchEvent(new Event("change"));
+          }
+        }
+      },
+      {
+        signal,
+      }
+    );
+
+    this.multiselectReset?.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        this.deselectAll();
+      },
+      {
+        signal,
+      }
+    );
+
+    this.multiselectShowAll?.addEventListener("click", (event) => {
+      event.preventDefault();
+      this.toggleAllSelectedItemsShown();
+    });
+
+    this.selectAllBtn?.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (this.hasAllSelected()) {
+        this.deselectAll();
+      } else {
+        this.selectAll();
+      }
+    });
+
+    if (this.selectType === "single") {
+      this.setValue();
+    } else {
+      this.setValues();
+    }
 
     this.rootElement.classList.add("initialized");
 
     return () => {
-      this.clearValue();
+      if (this.selectType === "single") {
+        this.clearValue();
+      } else {
+        this.clearValues();
+      }
+
       this.hideDropdown();
       this.activeTags.forEach((tag) => tag.remove());
       abortController.abort();
+      this.rootElement.classList.remove("multiselect");
+      this.selectedItemsWrapper?.classList.remove("all-selected-shown");
       this.rootElement.classList.remove("initialized");
     };
   };
