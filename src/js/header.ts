@@ -6,6 +6,15 @@ gsap.registerPlugin(ScrollTrigger);
 export default function header() {
   const header = document.querySelector<HTMLElement>(".page-header");
   if (!header) return;
+
+  const headerFinderBtn = header.querySelector<HTMLButtonElement>(
+    ".js-header-finder-btn"
+  );
+  headerFinderBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    headerFinderBtn?.classList.toggle("active");
+  });
+
   const bottom = document.querySelector<HTMLElement>(".page-header__bottom");
   if (!bottom) return;
 

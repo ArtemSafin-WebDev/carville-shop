@@ -50,7 +50,7 @@
 .promo__nav {
   align-self: center;
   position: relative;
-  z-index: 20;
+  z-index: 16;
   transform: translateY(50%);
 
   @include media.breakpoint(small-mobile) {

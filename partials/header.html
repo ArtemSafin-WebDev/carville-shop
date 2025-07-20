@@ -1,3 +1,6 @@
+<div class="page-header-finder-overlay">
+
+</div>
 <header class="page-header">
     <div class="page-header__content">
         <div class="page-header__top">
@@ -69,6 +72,23 @@
                             </button>
                         </div>
                     </form>
+                </div>
+                <button class="page-header__finder-btn js-header-finder-btn" type="button">
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#auto"></use>
+                    </svg>
+                    <svg width="14" height="14" aria-hidden="true">
+                        <use xlink:href="#clear"></use>
+                    </svg>
+                    Подобрать по авто или VIN
+                </button>
+                <div class="page-header__finder-dropdown">
+                    <div class="page-header__finder-dropdown-inner">
+                        <div class="page-header__finder-dropdown-bg">
+                            <img src="/images/intro-bg.webp" alt="" class="page-header__finder-dropdown-bg-image">
+                        </div>
+                        {{> finder }}
+                    </div>
                 </div>
                 <div class="page-header__links">
                     <a href="#" class="page-header__link">
