@@ -339,8 +339,15 @@ body:has(.finder.active) {
   position: relative;
   flex-grow: 1;
   &:not(.initialized) {
+    .finder__select-input {
+      pointer-events: none;
+    }
     .finder__select-btn-label {
       border-color: #e8e8e8;
+    }
+
+    .finder__select-title {
+      color: #d1d1d2;
     }
 
     .finder__select-arrow svg {

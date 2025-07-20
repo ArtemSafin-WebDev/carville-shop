@@ -1,9 +1,4 @@
-import Select from "./Select";
 import Validator from "./Validator";
-import gsap from "gsap";
-import { Flip } from "gsap/all";
-
-gsap.registerPlugin(Flip);
 
 type Mode = "auto" | "vin";
 
@@ -98,7 +93,6 @@ export default class Finder {
     if (this.vinModeFormValidator) {
       const isFormValid = this.vinModeFormValidator.validate();
       if (isFormValid) {
-        // Тут должна быть отправка данных формы
       } else {
         console.error("Form is not valid");
       }
@@ -109,12 +103,6 @@ export default class Finder {
     const abortController = new AbortController();
     const signal = abortController.signal;
 
-    const selectElements = Array.from(
-      this.rootElement.querySelectorAll<HTMLElement>(".js-select")
-    );
-    const selects = selectElements.map((element) => new Select(element));
-
-    // selects.forEach((select) => select.destroy());
     this.modeBtns.forEach((btn, btnIndex) => {
       btn.addEventListener(
         "click",
@@ -177,7 +165,7 @@ export default class Finder {
       this.setMode("auto");
       this.hideMyAuto();
       this.vinModeFormValidator?.destroy();
-      selects.forEach((select) => select.destroy());
+
       abortController.abort();
     };
   };

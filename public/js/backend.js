@@ -1,0 +1,204 @@
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Hello from backend.js");
+
+  const elements = Array.from(document.querySelectorAll(".js-finder"));
+
+  const finders = elements.map((element) =>
+    window.carvilleApi.initializeFinder(element)
+  );
+
+  const openFinderBtns = Array.from(
+    document.querySelectorAll(".js-open-finder-btn")
+  );
+  openFinderBtns.forEach((btn) =>
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      finders[0]?.showMobileFinderPopup();
+    })
+  );
+
+  const findByAuto = document.querySelectorAll(".js-find-by-auto");
+  findByAuto.forEach((element) => {
+    const submitBtn = element.querySelector(".finder__submit-btn");
+    const brandSelectElement = element.querySelector(".js-brand-select");
+    const groupSelectElement = element.querySelector(".js-group-select");
+    const modelSelectElement = element.querySelector(".js-model-select");
+    const yearSelectElement = element.querySelector(".js-years-select");
+    const modificationSelectElement = element.querySelector(
+      ".js-modification-select"
+    );
+    const engineSelectElement = element.querySelector(".js-engine-select");
+    const brandSelectInstance =
+      window.carvilleApi.initializeSelect(brandSelectElement);
+    const groupSelectInstance =
+      window.carvilleApi.initializeSelect(groupSelectElement);
+    let modelSelectInstance = null;
+    let yearSelectInstance = null;
+    let engineSelectInstance = null;
+    let modificationSelectInstance = null;
+
+    const destroy = (options) => {
+      if (options.model) {
+        modelSelectInstance?.destroy();
+        modelSelectInstance = null;
+      }
+      if (options.years) {
+        yearSelectInstance?.destroy();
+        yearSelectInstance = null;
+      }
+      if (options.engine) {
+        engineSelectInstance?.destroy();
+        engineSelectInstance = null;
+      }
+
+      if (options.modification) {
+        modificationSelectInstance?.destroy();
+        modificationSelectInstance = null;
+      }
+    };
+
+    const validate = () => {
+      const selectsToValidate = [
+        brandSelectInstance,
+        modelSelectInstance,
+        groupSelectInstance,
+        yearSelectInstance,
+        modificationSelectInstance,
+      ];
+      const isValid = selectsToValidate.every((select) => {
+        if (!select) return false;
+        const value = select.value;
+        if (!value) return false;
+        if (Array.isArray(value) && !value.length) return false;
+        return true;
+      });
+      if (isValid) {
+        submitBtn.disabled = false;
+        console.log("Valid", selectsToValidate);
+      } else {
+        submitBtn.disabled = true;
+        console.log(
+          "Not Valid",
+          selectsToValidate.map((item) => item?.value)
+        );
+      }
+    };
+
+    brandSelectElement.addEventListener("select:set", () => {
+      destroy({
+        model: true,
+        years: true,
+        engine: true,
+        modification: true,
+      });
+
+      const brandValue = brandSelectInstance.value;
+      // Направляется аякс запрос со значением бренда для получения моделей, меняется разметка селекта моделей
+      modelSelectInstance =
+        window.carvilleApi.initializeSelect(modelSelectElement);
+
+      console.log("brand values", brandValue);
+
+      validate();
+    });
+
+    brandSelectElement.addEventListener("select:clear", () => {
+      destroy({
+        model: true,
+        years: true,
+        engine: true,
+        modification: true,
+      });
+
+      validate();
+    });
+    modelSelectElement.addEventListener("select:set", () => {
+      destroy({
+        years: true,
+        engine: true,
+        modification: true,
+      });
+
+      const modelValue = modelSelectInstance.value;
+      // Направляется аякс запрос со значением модели для получения годов, меняется разметка селекта годов
+      yearSelectInstance =
+        window.carvilleApi.initializeSelect(yearSelectElement);
+
+      console.log("model values", modelValue);
+    });
+
+    modelSelectElement.addEventListener("select:clear", () => {
+      destroy({
+        years: true,
+        engine: true,
+        modification: true,
+      });
+      validate();
+    });
+    yearSelectElement.addEventListener("select:set", () => {
+      destroy({
+        engine: true,
+        modification: true,
+      });
+
+      const yearsValue = yearSelectInstance.value;
+
+      engineSelectInstance =
+        window.carvilleApi.initializeSelect(engineSelectElement);
+
+      console.log("years values", yearsValue);
+      validate();
+    });
+
+    yearSelectElement.addEventListener("select:clear", () => {
+      destroy({
+        engine: true,
+        modification: true,
+      });
+      validate();
+    });
+    engineSelectElement.addEventListener("select:set", () => {
+      destroy({
+        modification: true,
+      });
+      const engineValue = yearSelectInstance.value;
+
+      modificationSelectInstance = window.carvilleApi.initializeSelect(
+        modificationSelectElement
+      );
+
+      console.log("engine value", engineValue);
+      validate();
+    });
+
+    engineSelectElement.addEventListener("select:clear", () => {
+      destroy({
+        modification: true,
+      });
+      validate();
+    });
+    modificationSelectElement.addEventListener("select:set", () => {
+      const modificationValue = modificationSelectInstance.value;
+
+      console.log("modification value", modificationValue);
+
+      validate();
+    });
+
+    modificationSelectElement.addEventListener("select:clear", () => {
+      validate();
+    });
+
+    groupSelectElement.addEventListener("select:set", () => {
+      const groupValue = groupSelectInstance.value;
+
+      console.log("group value", groupValue);
+
+      validate();
+    });
+
+    groupSelectElement.addEventListener("select:clear", () => {
+      validate();
+    });
+  });
+});

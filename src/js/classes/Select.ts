@@ -80,11 +80,15 @@ export default class Select {
     return this.getCheckedOptions().length === this.options.length;
   };
 
+  get value() {
+    if (this.selectType === "single") return this.getCheckedOption()?.value;
+    return this.getCheckedOptions().map((item) => item.value);
+  }
+
   protected createPopularTags() {
     if (this.popularTagsList) {
       this.popularTagsList.innerHTML = "";
     } else {
-      console.error("No popular tags list found");
       return;
     }
     const popularOptions = this.options.filter((option) =>
@@ -142,7 +146,6 @@ export default class Select {
     this.selectedItemsWrapper.innerHTML = "";
     const options = this.getCheckedOptions();
 
-    console.log("Adding selected");
     const tags = options.map((option) => {
       const btn = document.createElement("button");
       btn.type = "button";
@@ -187,6 +190,11 @@ export default class Select {
     } else {
       this.selectAllBtn?.classList.remove("active");
     }
+    this.rootElement.dispatchEvent(
+      new CustomEvent("select:set", {
+        bubbles: true,
+      })
+    );
   };
 
   public setValue = () => {
@@ -198,6 +206,12 @@ export default class Select {
     this.rootElement.classList.add("option-selected");
     this.handleSearch("");
     this.createPopularTags();
+
+    this.rootElement.dispatchEvent(
+      new CustomEvent("select:set", {
+        bubbles: true,
+      })
+    );
   };
 
   public clearValue = () => {
@@ -214,6 +228,12 @@ export default class Select {
     this.hideDropdown();
     this.handleSearch("");
     this.createPopularTags();
+
+    this.rootElement.dispatchEvent(
+      new CustomEvent("select:clear", {
+        bubbles: true,
+      })
+    );
   };
 
   public clearValues = () => {
@@ -332,6 +352,7 @@ export default class Select {
         this.clearValues();
       }
     }
+
     if (this.selectType === "single") {
       this.hideDropdown();
     }
@@ -535,7 +556,6 @@ export default class Select {
       "click",
       (event) => {
         event.preventDefault();
-        console.log("Save btn clicked");
         this.hideMobilePopup();
       },
       {
@@ -568,6 +588,7 @@ export default class Select {
       }
 
       this.hideDropdown();
+      this.searchInput?.blur();
       this.popularTags.forEach((tag) => tag.remove());
       abortController.abort();
       this.rootElement.classList.remove("multiselect");

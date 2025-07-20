@@ -5,15 +5,16 @@ import promo from "./promo";
 import sales from "./sales";
 import header from "./header";
 import productCard from "./productCard";
-import finder from "./finder";
+import api from "./api";
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("hello from main.js");
   header();
   newItems();
   promo();
   sales();
   productCard();
-  finder();
+  api();
 });
 
 window.addEventListener("load", () => {

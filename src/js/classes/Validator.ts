@@ -70,10 +70,6 @@ class Validator {
     ) {
       this.locale = "ru";
     } else {
-      console.log(
-        "Setting en locale",
-        document.documentElement.lang.toLowerCase()
-      );
       this.locale = "en";
     }
     this.textFields = Array.from(
