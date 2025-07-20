@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const findByAuto = document.querySelectorAll(".js-find-by-auto");
   findByAuto.forEach((element) => {
     const submitBtn = element.querySelector(".finder__submit-btn");
+    const chooseModelBtn = element.querySelector(".js-select-choose-model");
     const brandSelectElement = element.querySelector(".js-brand-select");
     const groupSelectElement = element.querySelector(".js-group-select");
     const modelSelectElement = element.querySelector(".js-model-select");
     const yearSelectElement = element.querySelector(".js-years-select");
+
     const modificationSelectElement = element.querySelector(
       ".js-modification-select"
     );
@@ -36,6 +38,51 @@ document.addEventListener("DOMContentLoaded", () => {
     let yearSelectInstance = null;
     let engineSelectInstance = null;
     let modificationSelectInstance = null;
+
+    element.addEventListener("click", (event) => {
+      if (
+        event.target.matches(".js-select-choose-model") ||
+        event.target.closest(".js-select-choose-model")
+      ) {
+        event.preventDefault();
+        if (brandSelectInstance) brandSelectInstance.hideMobilePopup();
+        if (modelSelectInstance) modelSelectInstance.showMobilePopup();
+      }
+      if (
+        event.target.matches(".js-select-choose-year") ||
+        event.target.closest(".js-select-choose-year")
+      ) {
+        event.preventDefault();
+        if (modelSelectInstance) modelSelectInstance.hideMobilePopup();
+        if (yearSelectInstance) yearSelectInstance.showMobilePopup();
+      }
+      if (
+        event.target.matches(".js-select-choose-engine") ||
+        event.target.closest(".js-select-choose-engine")
+      ) {
+        event.preventDefault();
+        if (yearSelectInstance) yearSelectInstance.hideMobilePopup();
+        if (engineSelectInstance) engineSelectInstance.showMobilePopup();
+      }
+      if (
+        event.target.matches(".js-select-choose-modification") ||
+        event.target.closest(".js-select-choose-modification")
+      ) {
+        event.preventDefault();
+        if (engineSelectInstance) engineSelectInstance.hideMobilePopup();
+        if (modificationSelectInstance)
+          modificationSelectInstance.showMobilePopup();
+      }
+      if (
+        event.target.matches(".js-select-choose-group") ||
+        event.target.closest(".js-select-choose-group")
+      ) {
+        event.preventDefault();
+        if (modificationSelectInstance)
+          modificationSelectInstance.hideMobilePopup();
+        if (groupSelectInstance) groupSelectInstance.showMobilePopup();
+      }
+    });
 
     const destroy = (options) => {
       if (options.model) {

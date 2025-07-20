@@ -1950,7 +1950,7 @@ textarea.finder__text-input {
   display: none;
 }
 
-.option-selected {
+.option-selected .finder__select-controls.next-step-available {
   .finder__select-save {
     background: #f6f6f6;
     color: var(--text-color);
