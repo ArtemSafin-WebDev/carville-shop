@@ -17,10 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   );
 
-  const findByAuto = document.querySelectorAll(".js-find-by-auto");
+  const findByAuto = Array.from(document.querySelectorAll(".js-find-by-auto"));
   findByAuto.forEach((element) => {
     const submitBtn = element.querySelector(".finder__submit-btn");
-    const chooseModelBtn = element.querySelector(".js-select-choose-model");
     const brandSelectElement = element.querySelector(".js-brand-select");
     const groupSelectElement = element.querySelector(".js-group-select");
     const modelSelectElement = element.querySelector(".js-model-select");
@@ -247,5 +246,63 @@ document.addEventListener("DOMContentLoaded", () => {
     groupSelectElement.addEventListener("select:clear", () => {
       validate();
     });
+  });
+
+  const findByVin = Array.from(document.querySelectorAll(".js-find-by-vin"));
+
+  findByVin.forEach((element) => {
+    const brandSelectElement = element.querySelector(".js-brand-select");
+    const modelSelectElement = element.querySelector(".js-model-select");
+    const form = element.querySelector(".js-vin-mode-form");
+    const brandSelectInstance =
+      window.carvilleApi.initializeSelect(brandSelectElement);
+    let validator = window.carvilleApi.initializeValidation(form);
+    let modelSelectInstance = null;
+
+    element.addEventListener("click", (event) => {
+      if (
+        event.target.matches(".js-select-choose-model") ||
+        event.target.closest(".js-select-choose-model")
+      ) {
+        event.preventDefault();
+        if (brandSelectInstance) brandSelectInstance.hideMobilePopup();
+        if (modelSelectInstance) modelSelectInstance.showMobilePopup();
+      }
+    });
+
+    const handleSubmit = (event) => {
+      if (validator) {
+        event.preventDefault();
+        const isValid = validator.validate();
+        if (isValid) {
+          const data = new FormData(form);
+          // Отправить данные
+
+          console.log("Отправка данных");
+        }
+      }
+    };
+
+    brandSelectElement.addEventListener("select:set", () => {
+      if (modelSelectInstance) {
+        modelSelectInstance.destroy();
+        modelSelectInstance = null;
+      }
+      const brandValue = brandSelectInstance.value;
+      // Направляется аякс запрос со значением бренда для получения моделей, меняется разметка селекта моделей
+      modelSelectInstance =
+        window.carvilleApi.initializeSelect(modelSelectElement);
+
+      console.log("brand values", brandValue);
+    });
+
+    brandSelectElement.addEventListener("select:clear", () => {
+      if (modelSelectInstance) {
+        modelSelectInstance.destroy();
+        modelSelectInstance = null;
+      }
+    });
+
+    form.addEventListener("submit", handleSubmit);
   });
 });

@@ -1,5 +1,3 @@
-import Validator from "./Validator";
-
 type Mode = "auto" | "vin";
 
 export default class Finder {
@@ -11,7 +9,7 @@ export default class Finder {
   protected autoModeForm: HTMLFormElement | null = null;
   protected vinModeForm: HTMLFormElement | null = null;
   protected autoModeSubmitBtn: HTMLButtonElement | null = null;
-  protected vinModeFormValidator: Validator | null = null;
+
   protected showMyAutoBtn: HTMLButtonElement | null = null;
   protected myAutoShown: boolean = false;
   protected myAutoDropdown: HTMLElement | null = null;
@@ -44,8 +42,6 @@ export default class Finder {
     this.finderCloseBtn = this.rootElement.querySelector(
       ".js-finder-close-btn"
     );
-    if (this.vinModeForm)
-      this.vinModeFormValidator = new Validator(this.vinModeForm);
 
     this.destroyFn = this.init();
   }
@@ -88,17 +84,6 @@ export default class Finder {
     this.myAutoDropdown?.classList.remove("active");
   };
 
-  protected handleVinModeFormSubmit = async (event: SubmitEvent) => {
-    event.preventDefault();
-    if (this.vinModeFormValidator) {
-      const isFormValid = this.vinModeFormValidator.validate();
-      if (isFormValid) {
-      } else {
-        console.error("Form is not valid");
-      }
-    }
-  };
-
   protected init = () => {
     const abortController = new AbortController();
     const signal = abortController.signal;
@@ -118,10 +103,6 @@ export default class Finder {
           signal,
         }
       );
-    });
-
-    this.vinModeForm?.addEventListener("submit", this.handleVinModeFormSubmit, {
-      signal,
     });
 
     this.showMyAutoBtn?.addEventListener(
@@ -164,7 +145,6 @@ export default class Finder {
     return () => {
       this.setMode("auto");
       this.hideMyAuto();
-      this.vinModeFormValidator?.destroy();
 
       abortController.abort();
     };
