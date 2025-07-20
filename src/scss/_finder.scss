@@ -791,6 +791,9 @@ body:has(.finder.active) {
 
   @include media.breakpoint(small-mobile) {
     max-height: none;
+    .multiselect.option-selected & {
+      max-height: none;
+    }
   }
   &::-webkit-scrollbar {
     background-color: white;
@@ -946,6 +949,7 @@ body:has(.finder.active) {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.8rem;
+  text-align: left;
 
   &.active {
     background-color: rgba(255, 110, 0, 0.05);
@@ -961,11 +965,11 @@ body:has(.finder.active) {
   @include media.breakpoint(small-mobile) {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.4rem;
+    justify-content: space-flex-start;
+    gap: 0.8rem;
     font-size: 1.6rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 2.2rem;
     padding: 0.8rem 1.2rem;
     border-radius: 1.2rem;
@@ -1780,6 +1784,10 @@ textarea.finder__text-input {
 
   .multiselect.option-selected & {
     display: block;
+
+    @include media.breakpoint(small-mobile) {
+      display: none;
+    }
   }
 }
 
@@ -1792,6 +1800,13 @@ textarea.finder__text-input {
   border-bottom: 1px solid #e8e8e8;
   .option-selected & {
     display: flex;
+  }
+
+  @include media.breakpoint(small-mobile) {
+    padding: 0;
+    border: none;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
   }
 }
 

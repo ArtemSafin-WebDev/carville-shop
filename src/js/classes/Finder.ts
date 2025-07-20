@@ -113,6 +113,8 @@ export default class Finder {
       this.rootElement.querySelectorAll<HTMLElement>(".js-select")
     );
     const selects = selectElements.map((element) => new Select(element));
+
+    // selects.forEach((select) => select.destroy());
     this.modeBtns.forEach((btn, btnIndex) => {
       btn.addEventListener(
         "click",

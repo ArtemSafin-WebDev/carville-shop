@@ -54,7 +54,7 @@ export default class Select {
       this.selectType = "multiple";
       this.rootElement.classList.add("multiselect");
     }
-    this.init();
+    this.destroyFn = this.init();
   }
 
   public selectAll = () => {
@@ -204,6 +204,7 @@ export default class Select {
       if (input) input.checked = false;
     });
 
+    this.hideDropdown();
     this.handleSearch("");
     this.updateTags();
   };
@@ -219,6 +220,7 @@ export default class Select {
       if (input) input.checked = false;
     });
     this.selectAllBtn?.classList.remove("active");
+    this.hideDropdown();
     this.handleSearch("");
     this.addSelectedItemsTags();
     this.updateTags();
@@ -325,7 +327,6 @@ export default class Select {
       }
     }
     if (this.selectType === "single") {
-      console.log("CLOSING DROPDOWN 3");
       this.hideDropdown();
     }
   };
@@ -355,8 +356,6 @@ export default class Select {
         )
           return;
 
-        if (this.selectType === "multiple")
-          console.log("CLOSING DROPDOWN 1", target, this.rootElement);
         this.hideDropdown();
       },
       {
@@ -390,8 +389,6 @@ export default class Select {
           this.clearValue();
         } else {
           this.clearValues();
-
-          console.log("CLOSING DROPDOWN 2");
           this.hideDropdown();
         }
       },
