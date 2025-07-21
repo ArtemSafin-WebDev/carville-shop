@@ -63,7 +63,7 @@
                 </div>
                 <div class="page-header__search">
                     <div class="page-header__search-overlay"></div>
-                    <form action="/" method="POST" class="page-header__search-form">
+                    <div class="page-header__search-form">
                         <div class="page-header__search-mobile-wrapper">
 
 
@@ -83,9 +83,7 @@
                                     Ничего не найдено
                                 </div>
                             </div>
-                            <div class="page-header__search-mobile-controls">
-
-
+                            <form class="page-header__search-mobile-controls" method="GET" action="/">
                                 <div class="page-header__search-input-wrapper">
                                     <input type="search" name="search" class="page-header__search-input"
                                         placeholder="Искать на сайте по наименованию или артикулу" autocomplete="off">
@@ -103,7 +101,7 @@
                                 <button class="page-header__search-mobile-close-btn" type="button">
                                     Отмена
                                 </button>
-                            </div>
+                            </form>
                         </div>
                         <div class="page-header__search-dropdown">
                             <div class="page-header__search-dropdown-main">
@@ -280,10 +278,265 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    <div class="page-header__search-dropdown-results">
+                                        <div class="page-header__search-dropdown-results-row">
+                                            <h3 class="page-header__search-dropdown-results-heading">
+                                                Популярные товары
+                                            </h3>
+                                            <a href="#" class="page-header__search-dropdown-results-link">
+                                                См. все
+                                                <span class="page-header__search-dropdown-results-link-arrow">
+                                                    <svg width="14" height="14" aria-hidden="true">
+                                                        <use xlink:href="#diagonal-arrow"></use>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <ul class="page-header__search-dropdown-results-list">
+                                            <li class="page-header__search-dropdown-results-list-item">
+                                                <div class="page-header__search-dropdown-results-card">
+                                                    <a href="#"
+                                                        class="page-header__search-dropdown-results-card-link-wrapper"></a>
+                                                    <div
+                                                        class="page-header__search-dropdown-results-card-image-container">
+
+                                                    </div>
+                                                    <div class="page-header__search-dropdown-results-card-content">
+                                                        <h4 class="page-header__search-dropdown-results-card-title">
+                                                            Стеклоподъёмник в сборе для а/м Ford Focus (98-)
+                                                            электрический передний правый с мотором (VWR 1078)
+                                                        </h4>
+                                                        <div class="page-header__search-dropdown-results-card-row">
+                                                            <div
+                                                                class="page-header__search-dropdown-results-card-price">
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-current">
+                                                                    18 500
+                                                                </div>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-old">
+                                                                    25 800
+                                                                </div>
+                                                            </div>
+                                                            <form action="/" method="POST"
+                                                                class="page-header__search-dropdown-results-card-add-to-cart">
+                                                                <button
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-submit"
+                                                                    type="submit">
+                                                                    <svg width="14" height="14" aria-hidden="true">
+                                                                        <use xlink:href="#plus"></use>
+                                                                    </svg>
+                                                                </button>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-counter active">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--minus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-minus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                    <input type="text"
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-input"
+                                                                        readonly="" value="1">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--plus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-plus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="page-header__search-dropdown-results-list-item">
+                                                <div class="page-header__search-dropdown-results-card">
+                                                    <a href="#"
+                                                        class="page-header__search-dropdown-results-card-link-wrapper"></a>
+                                                    <div
+                                                        class="page-header__search-dropdown-results-card-image-container">
+
+                                                    </div>
+                                                    <div class="page-header__search-dropdown-results-card-content">
+                                                        <h4 class="page-header__search-dropdown-results-card-title">
+                                                            Стеклоподъёмник в сборе для а/м Ford Focus (98-)
+                                                            электрический передний правый с мотором (VWR 1078)
+                                                        </h4>
+                                                        <div class="page-header__search-dropdown-results-card-row">
+                                                            <div
+                                                                class="page-header__search-dropdown-results-card-price">
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-current">
+                                                                    18 500
+                                                                </div>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-old">
+                                                                    25 800
+                                                                </div>
+                                                            </div>
+                                                            <form action="/" method="POST"
+                                                                class="page-header__search-dropdown-results-card-add-to-cart">
+                                                                <button
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-submit"
+                                                                    type="submit">
+                                                                    <svg width="14" height="14" aria-hidden="true">
+                                                                        <use xlink:href="#plus"></use>
+                                                                    </svg>
+                                                                </button>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-counter">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--minus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-minus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                    <input type="text"
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-input"
+                                                                        readonly="" value="1">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--plus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-plus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="page-header__search-dropdown-results-list-item">
+                                                <div class="page-header__search-dropdown-results-card">
+                                                    <a href="#"
+                                                        class="page-header__search-dropdown-results-card-link-wrapper"></a>
+                                                    <div
+                                                        class="page-header__search-dropdown-results-card-image-container">
+
+                                                    </div>
+                                                    <div class="page-header__search-dropdown-results-card-content">
+                                                        <h4 class="page-header__search-dropdown-results-card-title">
+                                                            Стеклоподъёмник в сборе для а/м Ford Focus (98-)
+                                                            электрический передний правый с мотором (VWR 1078)
+                                                        </h4>
+                                                        <div class="page-header__search-dropdown-results-card-row">
+                                                            <div
+                                                                class="page-header__search-dropdown-results-card-price">
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-current">
+                                                                    18 500
+                                                                </div>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-old">
+                                                                    25 800
+                                                                </div>
+                                                            </div>
+                                                            <form action="/" method="POST"
+                                                                class="page-header__search-dropdown-results-card-add-to-cart">
+                                                                <button
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-submit"
+                                                                    type="submit">
+                                                                    <svg width="14" height="14" aria-hidden="true">
+                                                                        <use xlink:href="#plus"></use>
+                                                                    </svg>
+                                                                </button>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-counter active">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--minus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-minus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                    <input type="text"
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-input"
+                                                                        readonly="" value="1">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--plus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-plus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="page-header__search-dropdown-results-list-item">
+                                                <div class="page-header__search-dropdown-results-card">
+                                                    <a href="#"
+                                                        class="page-header__search-dropdown-results-card-link-wrapper"></a>
+                                                    <div
+                                                        class="page-header__search-dropdown-results-card-image-container">
+
+                                                    </div>
+                                                    <div class="page-header__search-dropdown-results-card-content">
+                                                        <h4 class="page-header__search-dropdown-results-card-title">
+                                                            Стеклоподъёмник в сборе для а/м Ford Focus (98-)
+                                                            электрический передний правый с мотором (VWR 1078)
+                                                        </h4>
+                                                        <div class="page-header__search-dropdown-results-card-row">
+                                                            <div
+                                                                class="page-header__search-dropdown-results-card-price">
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-current">
+                                                                    18 500
+                                                                </div>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-price-old">
+                                                                    25 800
+                                                                </div>
+                                                            </div>
+                                                            <form action="/" method="POST"
+                                                                class="page-header__search-dropdown-results-card-add-to-cart">
+                                                                <button
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-submit"
+                                                                    type="submit">
+                                                                    <svg width="14" height="14" aria-hidden="true">
+                                                                        <use xlink:href="#plus"></use>
+                                                                    </svg>
+                                                                </button>
+                                                                <div
+                                                                    class="page-header__search-dropdown-results-card-add-to-cart-counter">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--minus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-minus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                    <input type="text"
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-input"
+                                                                        readonly="" value="1">
+                                                                    <button
+                                                                        class="page-header__search-dropdown-results-card-add-to-cart-counter-btn page-header__search-dropdown-results-card-add-to-cart-counter-btn--plus"
+                                                                        type="button">
+                                                                        <svg width="14" height="14" aria-hidden="true">
+                                                                            <use xlink:href="#counter-plus"></use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                 </div>
                 <button class="page-header__finder-btn js-header-finder-btn" type="button">

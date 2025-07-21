@@ -839,10 +839,37 @@
     display: flex;
     flex-direction: column;
     margin-top: 1.6rem;
+    padding-right: 0.7rem;
   }
 }
 
 .page-header__search-dropdown-main-inner {
+  @include media.breakpointMF(mobile) {
+    overflow-x: hidden;
+    max-height: calc(91vh - 10rem);
+    padding-right: 0.5rem;
+    scrollbar-gutter: stable;
+
+    &::-webkit-scrollbar {
+      background-color: white;
+      width: 0.4rem;
+      border-radius: 0.6rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c3c3c3;
+      border-radius: 0.6rem;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f6f6f6;
+      border-radius: 0.6rem;
+    }
+  }
 }
 
 .page-header__search-dropdown-top-row {
@@ -1069,4 +1096,288 @@
       display: block;
     }
   }
+}
+
+.page-header__search-dropdown-results {
+  margin-top: 3.2rem;
+}
+
+.page-header__search-dropdown-results-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.page-header__search-dropdown-results-heading {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.2rem;
+}
+
+.page-header__search-dropdown-results-link {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.4rem;
+  padding-left: 1.6rem;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  border-radius: 3rem;
+  background: #2c2d2e;
+  color: white;
+  flex-shrink: 0;
+  transition: color 0.2s, background-color 0.2s;
+
+  &:link,
+  &:visited {
+    color: white;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--primary-color);
+      .page-header__search-dropdown-results-link-arrow {
+        transform: rotate(45deg);
+        svg {
+          fill: var(--primary-color);
+        }
+      }
+    }
+  }
+
+  @include media.breakpoint(small-mobile) {
+    padding: 0.4rem;
+    padding-left: 1.6rem;
+    gap: 1.2rem;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem;
+  }
+}
+.page-header__search-dropdown-results-link-arrow {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: #2c2d2e;
+    transition: fill 0.2s;
+  }
+
+  @include media.breakpoint(small-mobile) {
+    width: 2.4rem;
+    height: 2.4rem;
+
+    svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}
+
+.page-header__search-dropdown-results-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-gap: 0.8rem;
+  grid-auto-rows: 1fr;
+}
+
+.page-header__search-dropdown-results-list-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header__search-dropdown-results-card {
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: 8rem 1fr;
+  grid-gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 2rem;
+  background: white;
+  grid-template-areas: "image content";
+  transition: box-shadow 0.2s;
+  position: relative;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      box-shadow: 0rem 0.8rem 2rem 0rem rgba(44, 45, 46, 0.12);
+      .page-header__search-dropdown-results-card-title {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.page-header__search-dropdown-results-card-link-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.page-header__search-dropdown-results-card-image-container {
+  grid-area: image;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: 1.2rem;
+  background: #f6f6f6;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.page-header__search-dropdown-results-card-content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.page-header__search-dropdown-results-card-title {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  transition: color 0.2s;
+}
+
+.page-header__search-dropdown-results-card-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: auto;
+}
+
+.page-header__search-dropdown-results-card-price {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.page-header__search-dropdown-results-card-price-current {
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.2rem;
+}
+
+.page-header__search-dropdown-results-card-price-old {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  color: #8b8d8e;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--primary-color);
+}
+
+.page-header__search-dropdown-results-card-add-to-cart {
+  margin-left: auto;
+  display: grid;
+  grid-template-areas: "stack";
+  flex-shrink: 0;
+  align-items: stretch;
+  justify-items: flex-end;
+  position: relative;
+  z-index: 30;
+}
+
+.page-header__search-dropdown-results-card-add-to-cart-submit {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  grid-area: stack;
+  transition: background-color 0.2s;
+  svg {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: white;
+    transition: fill 0.2s;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
+  }
+
+  &:active {
+    background-color: var(--primary-color-pressed);
+  }
+}
+
+.page-header__search-dropdown-results-card-add-to-cart-counter {
+  grid-area: stack;
+  padding: 0.4rem;
+  gap: 0.2rem;
+
+  align-items: center;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 3rem;
+  z-index: 10;
+  display: none;
+
+  &.active {
+    display: flex;
+  }
+}
+
+.page-header__search-dropdown-results-card-add-to-cart-counter-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  // border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+
+  svg {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: white;
+    transition: fill 0.2s;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: #ff8d37;
+    }
+  }
+}
+
+.page-header__search-dropdown-results-card-add-to-cart-counter-input {
+  display: block;
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8rem;
+  color: white;
+  width: 2.6rem;
 }
