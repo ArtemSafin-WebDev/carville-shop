@@ -1,6 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hello from backend.js");
 
+  const search = document.querySelector(".page-header__search");
+  if (search) {
+    const form = search.querySelector(".page-header__search-form");
+    const submitBtn = search.querySelector(".page-header__search-submit");
+    const input = search.querySelector(".page-header__search-input");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+
+    input.addEventListener("focus", () => {
+      document.body.classList.add("search-active");
+    });
+
+    submitBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.body.classList.toggle("search-active");
+    });
+  }
+
   const elements = Array.from(document.querySelectorAll(".js-finder"));
 
   const finders = elements.map((element) =>
