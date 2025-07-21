@@ -1,6 +1,7 @@
 <div class="page-header-finder-overlay">
 
 </div>
+
 <header class="page-header">
     <div class="page-header__content">
         <div class="page-header__top">
@@ -61,17 +62,202 @@
                     </a>
                 </div>
                 <div class="page-header__search">
+                    <div class="page-header__search-overlay"></div>
                     <form action="/" method="POST" class="page-header__search-form">
                         <div class="page-header__search-input-wrapper">
                             <input type="search" name="search" class="page-header__search-input"
-                                placeholder="Искать на сайте по наименованию или артикулу">
+                                placeholder="Искать на сайте по наименованию или артикулу" autocomplete="off">
+                            <button class="page-header__search-clear" type="button">
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#clear"></use>
+                                </svg>
+                            </button>
                             <button class="page-header__search-submit" type="submit">
                                 <svg width="14" height="14" aria-hidden="true">
                                     <use xlink:href="#search"></use>
                                 </svg>
                             </button>
                         </div>
+                        <div class="page-header__search-dropdown">
+                            <div class="page-header__search-dropdown-main">
+                                <div class="page-header__search-dropdown-main-inner">
+
+
+                                    <div class="page-header__search-dropdown-top-row">
+                                        <div class="page-header__search-dropdown-top-col">
+                                            <h3 class="page-header__search-dropdown-top-col-heading">
+                                                Возможно вы искали
+                                            </h3>
+                                            <ul class="page-header__search-suggestions-list">
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#clock"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Радиаторы
+                                                        </span>
+
+                                                        <button class="page-header__search-suggestions-clear"
+                                                            type="button">
+                                                            <svg width="14" height="14" aria-hidden="true">
+                                                                <use xlink:href="#clear"></use>
+                                                            </svg>
+                                                        </button>
+
+                                                    </div>
+                                                </li>
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#clock"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Радиаторы <mark>отопителя</mark>
+                                                        </span>
+                                                        <button class="page-header__search-suggestions-clear"
+                                                            type="button">
+                                                            <svg width="14" height="14" aria-hidden="true">
+                                                                <use xlink:href="#clear"></use>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Радиатор акпп
+                                                        </span>
+
+                                                    </div>
+                                                </li>
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Радиаторы охлаждения
+                                                        </span>
+
+                                                    </div>
+                                                </li>
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Ремкомплект
+                                                        </span>
+
+                                                    </div>
+                                                </li>
+                                                <li class="page-header__search-suggestions-list-item">
+                                                    <div class="page-header__search-suggestions-link">
+                                                        <a href="#"
+                                                            class="page-header__search-suggestions-link-wrapper"></a>
+                                                        <svg width="14" height="14" aria-hidden="true">
+                                                            <use xlink:href="#search"></use>
+                                                        </svg>
+                                                        <span class="page-header__search-suggestions-text">
+                                                            Редуктор
+                                                        </span>
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="page-header__search-dropdown-top-col">
+                                            <h3 class="page-header__search-dropdown-top-col-heading">
+                                                Категории
+                                            </h3>
+                                            <ul class="page-header__search-categories-list">
+                                                <li class="page-header__search-categories-list-item">
+                                                    <a href="#" class="page-header__search-categories-link">
+                                                        <div
+                                                            class="page-header__search-categories-link-image-container">
+
+                                                        </div>
+                                                        <div class="page-header__search-categories-link-content">
+                                                            <div class="page-header__search-categories-link-title">
+                                                                Стеклоочистители
+                                                            </div>
+                                                            <div class="page-header__search-categories-link-text">
+                                                                Компоненты системы охлаждения
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="page-header__search-categories-list-item">
+                                                    <a href="#" class="page-header__search-categories-link">
+                                                        <div
+                                                            class="page-header__search-categories-link-image-container">
+
+                                                        </div>
+                                                        <div class="page-header__search-categories-link-content">
+                                                            <div class="page-header__search-categories-link-title">
+                                                                Ресиверы-осушители
+                                                            </div>
+                                                            <div class="page-header__search-categories-link-text">
+                                                                Компоненты системы охлаждения
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="page-header__search-categories-list-item">
+                                                    <a href="#" class="page-header__search-categories-link">
+                                                        <div
+                                                            class="page-header__search-categories-link-image-container">
+
+                                                        </div>
+                                                        <div class="page-header__search-categories-link-content">
+                                                            <div class="page-header__search-categories-link-title">
+                                                                Розетки встраиваемые
+                                                            </div>
+                                                            <div class="page-header__search-categories-link-text">
+                                                                Автогаджеты и девайсы
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li class="page-header__search-categories-list-item">
+                                                    <a href="#" class="page-header__search-categories-link">
+                                                        <div
+                                                            class="page-header__search-categories-link-image-container">
+
+                                                        </div>
+                                                        <div class="page-header__search-categories-link-content">
+                                                            <div class="page-header__search-categories-link-title">
+                                                                Режущий инструмент
+                                                            </div>
+                                                            <div class="page-header__search-categories-link-text">
+                                                                Шиномонтаж
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
+
                 </div>
                 <button class="page-header__finder-btn js-header-finder-btn" type="button">
                     <svg width="14" height="14" aria-hidden="true">
