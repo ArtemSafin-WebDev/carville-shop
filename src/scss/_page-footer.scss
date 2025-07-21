@@ -203,6 +203,15 @@
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+  .validation-error {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4rem;
+    padding: 0 2rem;
+    color: #f20000;
+    margin-top: 0.4rem;
+  }
   @include media.breakpoint(small-mobile) {
     gap: 1.2rem;
   }
@@ -225,6 +234,41 @@
   }
 }
 
+.page-footer__subscribe-input-label {
+  position: relative;
+  width: 30%;
+  flex-grow: 1;
+}
+
+.page-footer__subscribe-input-label-text {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: #565758;
+  transition: all 0.2s;
+  pointer-events: none;
+  padding: 0.2rem 1rem;
+  border-radius: 0.9rem;
+
+  .page-footer__subscribe-input:focus ~ &,
+  .page-footer__subscribe-input:not(:placeholder-shown) ~ & {
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4rem;
+    top: 0;
+    transform: translateY(-50%) translateY(-1.6rem);
+    background-color: #2c2d2e;
+    color: #8b8d8e;
+  }
+}
+
 .page-footer__subscribe-input-wrapper {
   display: flex;
   align-items: center;
@@ -236,14 +280,36 @@
   transition: border-color 0.2s;
   align-self: stretch;
 
+  &:has(.not-valid) {
+    border-color: #f20000;
+  }
+
+  form.success & {
+    border-color: white;
+  }
+
   &:focus-within {
     border-color: var(--primary-color);
   }
 }
 
+.page-footer__subscribe-success {
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4rem;
+  padding: 0 2rem;
+  color: #3abf56;
+  margin-top: 0.4rem;
+
+  display: none;
+
+  form.success & {
+    display: block;
+  }
+}
+
 .page-footer__subscribe-input {
-  width: 30%;
-  flex-grow: 1;
   padding: 0 2rem;
   font-size: 1.4rem;
   font-style: normal;
@@ -255,6 +321,7 @@
 
   &::placeholder {
     color: #565758;
+    opacity: 0;
   }
 }
 
@@ -273,6 +340,26 @@
     height: 1.6rem;
     fill: white;
     transition: fill 0.2s;
+
+    &:nth-child(2) {
+      display: none;
+    }
+  }
+
+  form.success & {
+    background-color: #f6f6f6;
+    pointer-events: none;
+    svg {
+      fill: #2c2d2e;
+
+      &:nth-child(1) {
+        display: none;
+      }
+
+      &:nth-child(2) {
+        display: block;
+      }
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {

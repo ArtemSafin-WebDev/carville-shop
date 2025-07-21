@@ -230,9 +230,16 @@ class Validator {
     field: HTMLInputElement,
     error: ValidationError | null
   ): void {
+    const errorContainer = field.closest<HTMLElement>(
+      ".js-field-error-container"
+    );
     const parent = field.parentElement?.parentElement;
-    if (!parent) return;
-    this.placeErrorMessage(parent, error);
+    if (errorContainer) {
+      this.placeErrorMessage(errorContainer, error);
+    } else {
+      if (!parent) return;
+      this.placeErrorMessage(parent, error);
+    }
   }
   private showCheckboxFieldMessage(
     field: HTMLInputElement,

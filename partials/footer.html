@@ -115,15 +115,27 @@
                         </svg>
                         Новости и предложения
                     </h3>
-                    <form action="/" method="POST" class="page-footer__subscribe-form">
+                    <form action="/" method="POST"
+                        class="page-footer__subscribe-form js-subscribe-form js-field-error-container">
                         <div class="page-footer__subscribe-input-wrapper">
-                            <input name="email" type="email" class="page-footer__subscribe-input" autocomplete="off"
-                                placeholder="Почта куда присылать письма">
+                            <label class="page-footer__subscribe-input-label">
+                                <input name="email" type="email" class="page-footer__subscribe-input" autocomplete="off"
+                                    placeholder="Почта куда присылать письма" required="">
+                                <span class="page-footer__subscribe-input-label-text">
+                                    E-mail
+                                </span>
+                            </label>
                             <button type="submit" class="page-footer__subscribe-button">
                                 <svg width="14" height="14" aria-hidden="true">
                                     <use xlink:href="#submit"></use>
                                 </svg>
+                                <svg width="14" height="14" aria-hidden="true">
+                                    <use xlink:href="#success"></use>
+                                </svg>
                             </button>
+                        </div>
+                        <div class="page-footer__subscribe-success">
+                            Вы подписаны на новости и предложения
                         </div>
                     </form>
                 </div>

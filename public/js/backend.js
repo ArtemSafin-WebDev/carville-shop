@@ -332,4 +332,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", handleSubmit);
   });
+
+  const subscribeForm = document.querySelector(".js-subscribe-form");
+
+  if (subscribeForm) {
+    const validator = window.carvilleApi.initializeValidation(subscribeForm);
+    const input = subscribeForm.querySelector("input[name='email']");
+    subscribeForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (subscribeForm.classList.contains("success")) return;
+      const isValid = validator.validate();
+      if (isValid) {
+        console.log("Отправка формы подписки");
+        try {
+          const response = await fetch(subscribeForm.action, {
+            method: "POST",
+            body: new FormData(subscribeForm),
+          });
+          if (response.ok) {
+            subscribeForm.classList.add("success");
+            validator.reset();
+            input.readonly = true;
+          } else {
+            throw new Error("Failed to subscribe");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    });
+  }
 });
