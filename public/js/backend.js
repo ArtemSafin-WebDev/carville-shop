@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = search.querySelector(".page-header__search-form");
     const submitBtn = search.querySelector(".page-header__search-submit");
     const input = search.querySelector(".page-header__search-input");
+    const overlay = search.querySelector(".page-header__search-overlay");
     form.addEventListener("submit", (event) => {
       event.preventDefault();
     });
@@ -17,6 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.addEventListener("click", (event) => {
       event.preventDefault();
       document.body.classList.toggle("search-active");
+    });
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        document.body.classList.remove("search-active");
+      }
     });
   }
 
@@ -32,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
   openFinderBtns.forEach((btn) =>
     btn.addEventListener("click", (event) => {
       event.preventDefault();
-      finders[0]?.showMobileFinderPopup();
+      console.log(finders[0]);
+      finders.at(-1)?.showMobileFinderPopup();
     })
   );
 
