@@ -4,7 +4,6 @@ import newItems from "./newItems";
 import promo from "./promo";
 import sales from "./sales";
 import header from "./header";
-import productCard from "./productCard";
 import api from "./api";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   newItems();
   promo();
   sales();
-  productCard();
   api();
 });
 

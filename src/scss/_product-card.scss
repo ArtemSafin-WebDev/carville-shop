@@ -308,6 +308,13 @@
   }
 
   @include media.breakpoint(small-mobile) {
+    zoom: 0.9;
+    padding-top: 0.4rem;
+  }
+}
+
+.product-card__just-added-popover-text {
+  @include media.breakpoint(small-mobile) {
     display: none;
   }
 }
@@ -342,6 +349,23 @@
 
     &:active {
       color: var(--primary-color-pressed);
+    }
+
+    @include media.breakpoint(small-mobile) {
+      color: white;
+      &:link,
+      &:visited {
+        color: white;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          color: white;
+        }
+      }
+
+      &:active {
+        color: white;
+      }
     }
   }
 }

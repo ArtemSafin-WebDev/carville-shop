@@ -4,7 +4,16 @@
             Рекомендуем
         </h2>
         <ul class="recommended__list">
-            {{#times 10}}
+            <li class="recommended__list-item">
+                {{> product-card }}
+            </li>
+            <li class="recommended__list-item">
+                {{> product-card-2 }}
+            </li>
+            <li class="recommended__list-item">
+                {{> product-card-3 }}
+            </li>
+            {{#times 7}}
                 <li class="recommended__list-item">
                     {{> product-card }}
                 </li>
