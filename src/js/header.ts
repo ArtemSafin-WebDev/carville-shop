@@ -23,22 +23,16 @@ export default function header() {
     }
   });
 
-  const searchDropdown = document.querySelector<HTMLElement>(
-    ".page-header__search-dropdown"
+  const searchCloseBtn = document.querySelector<HTMLElement>(
+    ".page-header__search-mobile-close-btn"
   );
 
+  searchCloseBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.body.classList.remove("search-active");
+  });
+
   let mm = gsap.matchMedia();
-  if (searchDropdown) {
-    const parent = searchDropdown.parentElement;
-
-    mm.add("(max-width: 576px)", () => {
-      document.body.appendChild(searchDropdown);
-
-      return () => {
-        parent?.appendChild(searchDropdown);
-      };
-    });
-  }
 
   const bottom = document.querySelector<HTMLElement>(".page-header__bottom");
   if (!bottom) return;
