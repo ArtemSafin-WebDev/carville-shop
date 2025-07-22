@@ -5,6 +5,7 @@ import promo from "./promo";
 import sales from "./sales";
 import header from "./header";
 import api from "./api";
+import promoSlider from "./promoSlider";
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("hello from main.js");
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   newItems();
   promo();
   sales();
+  promoSlider();
   api();
 });
 

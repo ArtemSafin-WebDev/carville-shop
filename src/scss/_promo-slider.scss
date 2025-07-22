@@ -1,0 +1,36 @@
+@use "media";
+@use "utils";
+
+.promo-slider {
+  @include utils.blockWrapper;
+  margin-bottom: 7rem;
+
+  @include media.breakpoint(small-mobile) {
+    margin-bottom: 6rem;
+  }
+}
+
+.promo-slider__content {
+  @include utils.blockContent;
+  border-radius: 3rem;
+  overflow: hidden;
+}
+
+.promo-slider__card {
+  position: relative;
+  aspect-ratio: 1350 / 338;
+  background-color: #d1d1d2;
+
+  @include media.breakpoint(small-mobile) {
+    aspect-ratio: 358 / 180;
+  }
+}
+
+.promo-slider__card-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
